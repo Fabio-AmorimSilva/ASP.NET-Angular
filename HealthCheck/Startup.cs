@@ -71,7 +71,7 @@ namespace HealthCheck
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHealthChecks("/hc");
+                endpoints.MapHealthChecks("/hc", new CustomHealthCheckOptions());
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");

@@ -27,7 +27,7 @@ namespace HealthCheck
 
                 var result = JsonSerializer.Serialize(new
                 {
-                    chechs = r.Entries.Select(e => new
+                    checks = r.Entries.Select(e => new
                     {
                         name = e.Key,
 

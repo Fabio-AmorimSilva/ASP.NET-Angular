@@ -37,7 +37,7 @@ namespace HealthCheck
                             : HealthCheckResult.Healthy(msg);
                     default:
                         var err = $"ICMP to {Host} failed: {reply.Status}";
-                        return HealthCheckResult.Unhealthy();
+                        return HealthCheckResult.Unhealthy(err);
 
                 }
             }

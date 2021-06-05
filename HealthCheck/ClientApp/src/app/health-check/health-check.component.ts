@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-health-check',
-  template: './health-check.component.html',
+  templateUrl: './health-check.component.html',
   styleUrls: ['./health-check.component.css']
 })
 

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { HealthCheckComponent } from './health-check/health-check.component';
+import { TestFormComponent } from './test-form/test-form.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { HealthCheckComponent } from './health-check/health-check.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    HealthCheckComponent
+    HealthCheckComponent,
+    TestFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

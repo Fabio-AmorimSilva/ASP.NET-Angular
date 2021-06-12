@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { HealthCheckComponent } from './health-check/health-check.component';
 import { TestFormComponent } from './test-form/test-form.component';
 import { TestTableComponent } from './test-table/test-table.component';
+import { TestImageComponent } from './test-image/test-image.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TestTableComponent } from './test-table/test-table.component';
     HomeComponent,
     HealthCheckComponent,
     TestFormComponent,
-    TestTableComponent
+    TestTableComponent,
+    TestImageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -34,6 +34,9 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\app-routing.module.ts" />
+    <None Remove="ClientApp\src\app\test-form\test-form.component.ts" />
+    <None Remove="ClientApp\src\app\test-image\test-image.component.ts" />
+    <None Remove="ClientApp\src\app\test-table\test-table.component.ts" />
   </ItemGroup>
 
   <ItemGroup>

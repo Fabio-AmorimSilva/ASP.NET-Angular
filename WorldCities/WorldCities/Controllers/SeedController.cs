@@ -1,18 +1,15 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WorldCities.Data;
+using OfficeOpenXml;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using WorldCities.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Office.Interop.Excel;
-using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Security;
-using System.Threading.Tasks;
-using WorldCities.Data;
-using WorldCities.Data.Models;
 
 namespace WorldCities.Controllers
 {
@@ -29,97 +26,109 @@ namespace WorldCities.Controllers
         {
             _context = context;
             _env = env;
-
         }
 
         [HttpGet]
-        public async Task<IActionResult> Import()
+        public async Task<ActionResult> Import()
         {
-            // Prevents non-development enviroments from running this method
+            // prevents non-development environments from running this method
             if (!_env.IsDevelopment())
-            {
                 throw new SecurityException("Not allowed");
-            }
 
             var path = Path.Combine(
-                _env.ContentRootPath, 
+                _env.ContentRootPath,
                 "Data/Source/worldcities.xlsx");
 
             using var stream = System.IO.File.OpenRead(path);
             using var excelPackage = new ExcelPackage(stream);
-            // get the first worksheet
+
+            // get the first worksheet 
             var worksheet = excelPackage.Workbook.Worksheets[0];
+
             // define how many rows we want to process
             var nEndRow = worksheet.Dimension.End.Row;
-            // initialize the record counters
+
+            // initialize the record counters 
             var numberOfCountriesAdded = 0;
             var numberOfCitiesAdded = 0;
+
             // create a lookup dictionary
-            // containing all the countries already existing
+            // containing all the countries already existing 
             // into the Database (it will be empty on first run).
             var countriesByName = _context.Countries
-            .AsNoTracking()
-            .ToDictionary(x => x.Name, StringComparer.OrdinalIgnoreCase);
+                .AsNoTracking()
+                .ToDictionary(x => x.Name, StringComparer.OrdinalIgnoreCase);
 
-            // iterates through all rows, skipping the first one
+            // iterates through all rows, skipping the first one 
             for (int nRow = 2; nRow <= nEndRow; nRow++)
             {
                 var row = worksheet.Cells[
-                nRow, 1, nRow, worksheet.Dimension.End.Column];
-                var countryName = row[nRow, 5].GetValue<string>();
+                    nRow, 1, nRow, worksheet.Dimension.End.Column];
 
+                var countryName = row[nRow, 5].GetValue<string>();
                 var iso2 = row[nRow, 6].GetValue<string>();
                 var iso3 = row[nRow, 7].GetValue<string>();
+
                 // skip this country if it already exists in the database
                 if (countriesByName.ContainsKey(countryName))
                     continue;
-                // create the Country entity and fill it with xlsx data
+
+                // create the Country entity and fill it with xlsx data 
                 var country = new Country
                 {
-                    Name = countryName
-
+                    Name = countryName,
+                    ISO2 = iso2,
+                    ISO3 = iso3
                 };
-                // add the new country to the DB context
+
+                // add the new country to the DB context 
                 await _context.Countries.AddAsync(country);
+
                 // store the country in our lookup to retrieve its Id later on
                 countriesByName.Add(countryName, country);
-                // increment the counter
+
+                // increment the counter 
                 numberOfCountriesAdded++;
             }
 
-            // save all the countries into the Database
-            if (numberOfCountriesAdded > 0)
-                await _context.SaveChangesAsync();
-            // create a lookup dictionary
-            // containing all the cities already existing
-            // into the Database (it will be empty on first run).
+            // save all the countries into the Database 
+            if (numberOfCountriesAdded > 0) await _context.SaveChangesAsync();
+
+            // create a lookup dictionary 
+            // containing all the cities already existing 
+            // into the Database (it will be empty on first run). 
             var cities = _context.Cities
-            .AsNoTracking()
-            .ToDictionary(x => (
-            Name: x.Name,
-            Lat: x.Lat,
-            Lon: x.Lon,
-            CountryId: x.CountryId));
-            // iterates through all rows, skipping the first one
+                .AsNoTracking()
+                .ToDictionary(x => (
+                    Name: x.Name,
+                    Lat: x.Lat,
+                    Lon: x.Lon,
+                    CountryId: x.CountryId));
+
+            // iterates through all rows, skipping the first one 
             for (int nRow = 2; nRow <= nEndRow; nRow++)
             {
                 var row = worksheet.Cells[
-                nRow, 1, nRow, worksheet.Dimension.End.Column];
+                    nRow, 1, nRow, worksheet.Dimension.End.Column];
+
                 var name = row[nRow, 1].GetValue<string>();
                 var nameAscii = row[nRow, 2].GetValue<string>();
                 var lat = row[nRow, 3].GetValue<decimal>();
                 var lon = row[nRow, 4].GetValue<decimal>();
                 var countryName = row[nRow, 5].GetValue<string>();
+
                 // retrieve country Id by countryName
                 var countryId = countriesByName[countryName].Id;
+
                 // skip this city if it already exists in the database
                 if (cities.ContainsKey((
-                Name: name,
-                Lat: lat,
-                Lon: lon,
-                CountryId: countryId)))
+                    Name: name,
+                    Lat: lat,
+                    Lon: lon,
+                    CountryId: countryId)))
                     continue;
-                // create the City entity and fill it with xlsx data
+
+                // create the City entity and fill it with xlsx data 
                 var city = new City
                 {
                     Name = name,
@@ -128,14 +137,17 @@ namespace WorldCities.Controllers
                     Lon = lon,
                     CountryId = countryId
                 };
-                // add the new city to the DB context
+
+                // add the new city to the DB context 
                 _context.Cities.Add(city);
-                // increment the counter
+
+                // increment the counter 
                 numberOfCitiesAdded++;
             }
-            // save all the cities into the Database
-            if (numberOfCitiesAdded > 0)
-                await _context.SaveChangesAsync();
+
+            // save all the cities into the Database 
+            if (numberOfCitiesAdded > 0) await _context.SaveChangesAsync();
+
             return new JsonResult(new
             {
                 Cities = numberOfCitiesAdded,

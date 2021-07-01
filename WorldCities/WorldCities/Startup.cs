@@ -22,7 +22,14 @@ namespace WorldCities
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddJsonOptions(options => {
+                    //set this option to TRUE to ident the JSON output
+                    options.JsonSerializerOptions.WriteIndented = true;
+                    //set this option to NULL to use PascalCase instead of
+                    // camelcase (default)
+                    // options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

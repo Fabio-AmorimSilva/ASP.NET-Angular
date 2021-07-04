@@ -8,6 +8,7 @@
     "@angular-devkit/schematics": "^12.1.1",
     "@angular/animations": "^12.1.1",
     "@angular/cdk": "^12.1.1",
+    "@angular/cli": "^9.1.15",
     "@angular/common": "^12.1.1",
     "@angular/core": "^12.1.1",
     "@angular/forms": "^12.1.1",

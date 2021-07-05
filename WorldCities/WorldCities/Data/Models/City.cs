@@ -10,6 +10,13 @@ namespace WorldCities.Data.Models
     [Table("Cities")]
     public class City
     {
+        #region Constructor
+        public City()
+        {
+
+        }
+        #endregion
+
         #region Properties
         /// <summary>
         /// The unique id and primary key for this City

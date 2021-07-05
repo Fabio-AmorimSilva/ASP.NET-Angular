@@ -4,16 +4,16 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import { City } from './city';
+import { Country } from './country';
 
 @Component({
-  selector: 'app-cities',
-  templateUrl: './cities.component.html',
-  styleUrls: ['./cities.component.css']
+  selector: 'app-countries',
+  templateUrl: './countries.component.html',
+  styleUrls: ['./countries.component.css']
 })
-export class CitiesComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'name', 'lat', 'lon'];
-  public cities: MatTableDataSource<City>;
+export class CountriesComponent implements OnInit {
+  public displayedColumns: string[] = ['id', 'name', 'iso2', 'iso3'];
+  public countries: MatTableDataSource<Country>;
 
   defaultPageIndex: number = 0;
   defaultPageSize: number = 10;
@@ -21,7 +21,7 @@ export class CitiesComponent implements OnInit {
   public defaultSortOrder: string = "asc";
 
   defaultFilterColumn: string = "name";
-  filterQuery:string = null;
+  filterQuery: string = null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -46,21 +46,21 @@ export class CitiesComponent implements OnInit {
   }
 
   getData(event: PageEvent) {
-    var url = this.baseUrl + 'api/Cities';
+    var url = this.baseUrl + 'api/Countries';
     var params = new HttpParams()
       .set("pageIndex", event.pageIndex.toString())
       .set("pageSize", event.pageSize.toString())
       .set("sortColumn", (this.sort)
-          ? this.sort.active
-          : this.defaultSortColumn)
+        ? this.sort.active
+        : this.defaultSortColumn)
       .set("sortOrder", (this.sort)
-          ? this.sort.direction
-          : this.defaultSortOrder);
+        ? this.sort.direction
+        : this.defaultSortOrder);
 
     if (this.filterQuery) {
       params = params
-          .set("filterColumn", this.defaultFilterColumn)
-          .set("filterQuery", this.filterQuery);
+        .set("filterColumn", this.defaultFilterColumn)
+        .set("filterQuery", this.filterQuery);
     }
 
     this.http.get<any>(url, { params })
@@ -68,7 +68,7 @@ export class CitiesComponent implements OnInit {
         this.paginator.length = result.totalCount;
         this.paginator.pageIndex = result.pageIndex;
         this.paginator.pageSize = result.pageSize;
-        this.cities = new MatTableDataSource<City>(result.data);
+        this.countries = new MatTableDataSource<Country>(result.data);
       }, error => console.error(error));
   }
 }

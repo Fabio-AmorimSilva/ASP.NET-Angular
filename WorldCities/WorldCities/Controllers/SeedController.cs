@@ -21,7 +21,7 @@ namespace WorldCities.Controllers
         private readonly IWebHostEnvironment _env;
 
         public SeedController(
-            ApplicationDbContext context,
+            ApplicationDbContext context, 
             IWebHostEnvironment env)
         {
             _context = context;
@@ -122,9 +122,9 @@ namespace WorldCities.Controllers
 
                 // skip this city if it already exists in the database
                 if (cities.ContainsKey((
-                    Name: name,
-                    Lat: lat,
-                    Lon: lon,
+                    Name: name, 
+                    Lat: lat, 
+                    Lon: lon, 
                     CountryId: countryId)))
                     continue;
 

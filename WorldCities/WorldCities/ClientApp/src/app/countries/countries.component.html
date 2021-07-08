@@ -11,7 +11,8 @@
 
 <table mat-table [dataSource]="countries" class="table-striped mat-elevation-z8" [hidden]="!countries"
     matSort (matSortChange)="loadData()"
-    matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+    matSortActive="{{defaultSortColumn}}"
+    matSortDirection="{{defaultSortOrder}}">
 
   <!-- Id Column -->
   <ng-container matColumnDef="id">

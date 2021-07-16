@@ -1,7 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, AsyncValidatorFn }
+  from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { City } from './City';
 import { Country } from './../countries/Country';
@@ -46,7 +49,7 @@ export class CityEditComponent implements OnInit {
       lat: new FormControl('', Validators.required),
       lon: new FormControl('', Validators.required),
       countryId: new FormControl('', Validators.required)
-    });
+    }, null, this.isDupeCity());
 
     this.loadData();
 
@@ -94,7 +97,7 @@ export class CityEditComponent implements OnInit {
     var city = (this.id) ? this.city : <City>{};
 
     city.name = this.form.get("name").value;
-    city.lat  = +this.form.get("lat").value;
+    city.lat = +this.form.get("lat").value;
     city.lon = +this.form.get("lon").value;
     city.countryId = +this.form.get("countryId").value;
 
@@ -110,17 +113,34 @@ export class CityEditComponent implements OnInit {
           // go back to cities view
           this.router.navigate(['/cities']);
         }, error => console.error(error));
-      } else {
-        // ADD NEW MODE
-        var url = this.baseUrl + "api/Cities";
-        this.http
-          .post<City>(url, city)
-          .subscribe(result => {
-            console.log("City " + result.id + " has been created.");
+    } else {
+      // ADD NEW MODE
+      var url = this.baseUrl + "api/Cities";
+      this.http
+        .post<City>(url, city)
+        .subscribe(result => {
+          console.log("City " + result.id + " has been created.");
 
           // go bach to cities view
-           this.router.navigate(['/cities']);
+          this.router.navigate(['/cities']);
         }, error => console.error(error));
     }
+  }
+
+  isDupeCity(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<{ [key: string]: any } | null>
+      => {
+          var city = <City>{};
+          city.id = (this.id) ? this.id : 0;
+          city.name = this.form.get("name").value;
+          city.lat = +this.form.get("lat").value;
+          city.lon = +this.form.get("lon").value;
+          city.countryId = +this.form.get("countryId").value;
+
+          var url = this.baseUrl + "api/Cities/IsDupeCity";
+          return this.http.post<boolean>(url, city).pipe(map(result => {
+            return (result ? { isDupeCity: true } : null);
+          }));
+        }
   }
 }

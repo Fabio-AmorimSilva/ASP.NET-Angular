@@ -1,0 +1,25 @@
+<h1>Agências</h1>
+
+<p>Lista de agências</p>
+
+<p *ngIf="!agencias"><em>Carregando...</em></p>
+
+<table class="table table-striped" aria-labelledby="tableLabel"
+       [hidden]="!agencias">
+    <thead>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Cidade</th>
+      <th>ID Corretores</th>
+      <th>ID Imovéis</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agencia of agencias">
+        <td>{{ agencia.id }}</td>
+        <td>{{ agencia.nome }}</td>
+        <td>{{ agencia.cidade }}</td>
+        <td>{{ agencia.idCorretores }}</td>
+        <td>{{ agencia.idImoveis }}</td>
+      </tr>
+    </tbody>
+</table>

@@ -124,8 +124,7 @@ export class CountryEditComponent implements OnInit {
   }
 
   isDupeField(fieldName: string): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<{ [key: string]: any } | null>
-      => {
+    return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
 
       var params = new HttpParams()
         .set("countryId", (this.id) ? this.id.toString() : "0")

@@ -128,8 +128,7 @@ export class CityEditComponent implements OnInit {
   }
 
   isDupeCity(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<{ [key: string]: any } | null>
-      => {
+    return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
           var city = <City>{};
           city.id = (this.id) ? this.id : 0;
           city.name = this.form.get("name").value;

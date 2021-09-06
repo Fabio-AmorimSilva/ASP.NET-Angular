@@ -10,12 +10,24 @@ using System.Threading.Tasks;
 
 namespace Imobiliaria.Data
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
+    public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(
-            DbContextOptions options,
-            IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
+        public ApplicationDbContext(): base()
         {
+
         }
+
+        public ApplicationDbContext(DbContextOptions options)
+            : base(options) 
+        { 
+        
+        }
+
+        public DbSet<Agencia> Agencias { get; set; }
+        public DbSet<Corretor> Corretores { get; set; }
+        public DbSet<Dono> Donos { get; set; }
+        public DbSet<Imovel> Imoveis { get; set; }
+
+
     }
 }

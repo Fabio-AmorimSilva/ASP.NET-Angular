@@ -1,6 +1,4 @@
-﻿using IdentityServer4.EntityFramework.Options;
-using Imobiliaria.Models;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+﻿using Imobiliaria.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;

@@ -1,12 +1,9 @@
-using IdentityServer4.Stores.Default;
 using Imobiliaria.Data;
 using Imobiliaria.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,14 +32,13 @@ namespace Imobiliaria
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddControllersWithViews()
+                .AddJsonOptions(options => {
 
+                    options.JsonSerializerOptions.WriteIndented = true;
 
+                });
 
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
-            services.AddControllersWithViews();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -75,8 +71,7 @@ namespace Imobiliaria
 
             app.UseRouting();
 
-            // app.UseAuthentication();
-            // app.UseIdentityServer();
+          
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

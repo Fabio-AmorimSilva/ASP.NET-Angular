@@ -19,18 +19,12 @@ export class AgenciaComponent implements OnInit {
     @Inject('BASE_URL') private baseUrl: string) {}
 
   ngOnInit() {
-    this.getData();
-
-  }
-
-  getData() {
-    var url = this.baseUrl + 'api/Agencias';
-    this.http.get<Agencia[]>(url)
+    this.http.get<Agencia[]>(this.baseUrl + 'api/Agencias')
       .subscribe(result => {
-        this.agencias = result
-        }, error => console.error(error));
-  }
+        this.agencias = result;
+      }, error => console.error(error));
 
+  }
 
 
 }

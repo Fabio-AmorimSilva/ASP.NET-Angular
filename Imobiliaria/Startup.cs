@@ -1,3 +1,4 @@
+using IdentityServer4.Stores.Default;
 using Imobiliaria.Data;
 using Imobiliaria.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -38,6 +39,7 @@ namespace Imobiliaria
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
+
             services.AddAuthentication()
                 .AddIdentityServerJwt();
             services.AddControllersWithViews();
@@ -73,8 +75,8 @@ namespace Imobiliaria
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseIdentityServer();
+            // app.UseAuthentication();
+            // app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

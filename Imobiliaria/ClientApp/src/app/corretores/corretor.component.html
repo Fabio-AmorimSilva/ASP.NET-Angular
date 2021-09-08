@@ -1,0 +1,24 @@
+<h1>Lista de Corretores</h1>
+
+<p *ngIf="!corretores"><em>Carregando...</em></p>
+
+<table class="table table-striped" aria-labelledby="tableLabel"
+       [hidden]="!corretores">
+  <thead>
+    <th>ID</th>
+    <th>Agência</th>
+    <th>Nome</th>
+    <th>Idade</th>
+    <th>Vendas</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let corretor of corretores">
+      <td>{{ corretor.id }}</td>
+      <td>{{ corretor.idAgencia }}</td>
+      <td>{{ corretor.nome }}</td>
+      <td>{{ corretor.idade }}</td>
+      <td>{{ corretor.vendas }}</td>
+    </tr>
+  </tbody>
+
+</table>

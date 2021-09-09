@@ -1,0 +1,21 @@
+<h1>Donos</h1>
+
+<p>Lista de Donos</p>
+
+<p *ngIf="!donos"><em>Carregando...</em></p>
+
+<table class="table table-striped table-bordered" aria-labelledby="tableLabel"
+       [hidden]="!donos">
+  <thead>
+    <th>Nome</th>
+    <th>Idade</th>
+    <th>Imovel</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dono of donos">
+      <td>{{ dono.nome }}</td>
+      <td>{{ dono.idade }}</td>
+      <td>{{ dono.imovel }}</td>
+    </tr>
+  </tbody>
+</table>

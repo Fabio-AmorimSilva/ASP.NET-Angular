@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AgenciaComponent } from './agencias/agencia.component';
 import { CorretorComponent } from './corretores/corretor.component';
+import { DonoComponent } from './donos/dono.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CorretorComponent } from './corretores/corretor.component';
     NavMenuComponent,
     HomeComponent,
     AgenciaComponent,
-    CorretorComponent
+    CorretorComponent,
+    DonoComponent
 
   ],
   imports: [

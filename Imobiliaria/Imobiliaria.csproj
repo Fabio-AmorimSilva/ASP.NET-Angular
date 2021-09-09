@@ -40,6 +40,8 @@
     <None Remove="ClientApp\src\app\app-routing.module.ts" />
     <None Remove="ClientApp\src\app\corretores\corretor.component.ts" />
     <None Remove="ClientApp\src\app\corretores\corretor.ts" />
+    <None Remove="ClientApp\src\app\donos\dono.component.ts" />
+    <None Remove="ClientApp\src\app\donos\dono.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +50,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\corretores\corretor.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\corretores\corretor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\donos\dono.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\donos\dono.ts" />
   </ItemGroup>
 
   <ItemGroup>

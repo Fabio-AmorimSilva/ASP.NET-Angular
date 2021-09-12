@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AgenciaComponent } from './agencias/agencia.component';
 import { CorretorComponent } from './corretores/corretor.component';
 import { DonoComponent } from './donos/dono.component';
+import { ImovelComponent } from './imoveis/imovel.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DonoComponent } from './donos/dono.component';
     HomeComponent,
     AgenciaComponent,
     CorretorComponent,
-    DonoComponent
+    DonoComponent,
+    ImovelComponent
 
   ],
   imports: [

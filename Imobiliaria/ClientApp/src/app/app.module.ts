@@ -11,6 +11,8 @@ import { AgenciaComponent } from './agencias/agencia.component';
 import { CorretorComponent } from './corretores/corretor.component';
 import { DonoComponent } from './donos/dono.component';
 import { ImovelComponent } from './imoveis/imovel.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ImovelComponent } from './imoveis/imovel.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularMaterialModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })

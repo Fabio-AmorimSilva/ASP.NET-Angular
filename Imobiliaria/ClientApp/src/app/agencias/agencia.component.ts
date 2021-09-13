@@ -11,7 +11,7 @@ import { Agencia } from './agencia';
 
 
 export class AgenciaComponent implements OnInit {
-
+  public colunas: string[] = ['id', 'nome', 'cidade', 'idCorretor', 'idImovel'];
   public agencias : Agencia[];
 
   constructor(

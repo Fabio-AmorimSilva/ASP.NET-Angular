@@ -11,6 +11,7 @@ import { Corretor } from './corretor';
 })
 
 export class CorretorComponent implements OnInit{
+  public colunas: string[] = ['id', 'idAgencia', 'nome', 'idade', 'vendas'];
   public corretores: Corretor[];
 
   constructor(

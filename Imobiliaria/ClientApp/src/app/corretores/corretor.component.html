@@ -2,6 +2,45 @@
 
 <p *ngIf="!corretores"><em>Carregando...</em></p>
 
+<table mat-table [dataSource]="corretores"
+       class="table-striped mat-elevation-z8"
+       [hidden]="!corretores">
+
+  <!-- Coluna ID-->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let corretor">{{ corretor.id }}</td>
+  </ng-container>
+
+  <!-- Coluna ID Agência -->
+  <ng-container matColumnDef="idAgencia">
+    <th mat-header-cell *matHeaderCellDef>ID Agência</th>
+    <td mat-cell *matCellDef="let corretor">{{ corretor.idAgencia }}</td>
+  </ng-container>
+
+  <!-- Coluna Nome -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef>Nome</th>
+    <td mat-cell *matCellDef="let corretor">{{ corretor.nome }}</td>
+  </ng-container>
+
+  <!-- Coluna Idade -->
+  <ng-container matColumnDef="idade">
+    <th mat-header-cell *matHeaderCellDef>Idade</th>
+    <td mat-cell *matCellDef="let corretor">{{ corretor.idade }}</td>
+  </ng-container>
+
+  <!-- Coluna Vendas -->
+  <ng-container matColumnDef="vendas">
+    <th mat-header-cell *matHeaderCellDef>Vendas</th>
+    <td mat-cell *matCellDef="let corretor">{{ corretor.vendas }}</td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+    <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+</table>
+
+<!-- Tabela sem o uso de Angular Material
 <table class="table table-striped" aria-labelledby="tableLabel"
        [hidden]="!corretores">
   <thead>
@@ -22,3 +61,4 @@
   </tbody>
 
 </table>
+-->

@@ -4,6 +4,40 @@
 
 <p *ngIf="!imoveis"><em>Carregando....</em></p>
 
+<table mat-table [dataSource]="imoveis"
+       class="table-striped mat-elevation-z8"
+       [hidden]="!imoveis">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let imovel">{{ imovel.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="idDono">
+    <th mat-header-cell *matHeaderCellDef>ID Dono</th>
+    <td mat-cell *matCellDef="let imovel">{{ imovel.idDono }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="idAgencia">
+    <th mat-header-cell *matHeaderCellDef>ID Agência</th>
+    <td mat-cell *matCellDef="let imovel">{{ imovel.idAgencia }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="endereco">
+    <th mat-header-cell *matHeaderCellDef>Endereço</th>
+    <td mat-cell *matCellDef="let imovel">{{ imovel.endereco }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="preco">
+    <th mat-header-cell *matHeaderCellDef>Preço</th>
+    <td mat-cell *matCellDef="let imovel">{{ imovel.preco }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+  <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+</table>
+
+<!-- Tabela sem o uso de Angular Material
 <table class="table table-striped table-bordered" aria-labelledby="tableLabel"
        [hidden]="!imoveis">
     <thead>
@@ -23,3 +57,4 @@
       </tr>
     </tbody>
 </table>
+  -->

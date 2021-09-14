@@ -11,6 +11,7 @@ import { Imovel } from './imovel';
 })
 
 export class ImovelComponent implements OnInit {
+  public colunas: string[] = ['id', 'idDono', 'idAgencia', 'endereco', 'preco'];
   public imoveis: Imovel[];
 
   constructor(

@@ -11,6 +11,7 @@ import { Dono } from './dono';
 })
 
 export class DonoComponent implements OnInit {
+  public colunas: string[] = [ 'nome', 'idade', 'imovel'];
   public donos: Dono[];
 
   constructor(

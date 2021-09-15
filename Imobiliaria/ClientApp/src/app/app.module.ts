@@ -13,6 +13,7 @@ import { DonoComponent } from './donos/dono.component';
 import { ImovelComponent } from './imoveis/imovel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AngularMaterialModule } from './angular-material.module';
     FormsModule,
     AppRoutingModule,
     AngularMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

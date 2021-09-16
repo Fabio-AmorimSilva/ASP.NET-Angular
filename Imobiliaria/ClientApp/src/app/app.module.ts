@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AgenciaComponent } from './agencias/agencia.component';
+import { AgenciaEditComponent } from './agencias/agencia-edit.component';
 import { CorretorComponent } from './corretores/corretor.component';
 import { DonoComponent } from './donos/dono.component';
 import { ImovelComponent } from './imoveis/imovel.component';
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AgenciaComponent,
     CorretorComponent,
     DonoComponent,
-    ImovelComponent
+    ImovelComponent,
+    AgenciaEditComponent
 
   ],
   imports: [

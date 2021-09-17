@@ -49,7 +49,7 @@ export class AgenciaEditComponent implements OnInit {
       //Retorna os dados por ID
       var id = +this.activatedRoute.snapshot.paramMap.get('id');
 
-      // fetch the city from the server
+      // Busca a agência no servidor
       var url = this.baseUrl + 'api/Agencias/' + id;
       this.http.get<Agencia>(url)
         .subscribe(result => {

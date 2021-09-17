@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AgenciaComponent } from './agencias/agencia.component';
 import { AgenciaEditComponent } from './agencias/agencia-edit.component';
 import { CorretorComponent } from './corretores/corretor.component';
+import { CorretorEditComponent } from './corretores/corretor-edit.component';
 import { DonoComponent } from './donos/dono.component';
 import { ImovelComponent } from './imoveis/imovel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,10 +23,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavMenuComponent,
     HomeComponent,
     AgenciaComponent,
+    AgenciaEditComponent,
     CorretorComponent,
+    CorretorEditComponent,
     DonoComponent,
     ImovelComponent,
-    AgenciaEditComponent
+    
+    
 
   ],
   imports: [

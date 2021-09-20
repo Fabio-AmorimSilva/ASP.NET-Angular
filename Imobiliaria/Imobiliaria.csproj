@@ -43,6 +43,7 @@
     <None Remove="ClientApp\src\app\corretores\corretor-edit.component.ts" />
     <None Remove="ClientApp\src\app\corretores\corretor.component.ts" />
     <None Remove="ClientApp\src\app\corretores\corretor.ts" />
+    <None Remove="ClientApp\src\app\donos\dono-edit.component.ts" />
     <None Remove="ClientApp\src\app\donos\dono.component.ts" />
     <None Remove="ClientApp\src\app\donos\dono.ts" />
     <None Remove="ClientApp\src\app\imoveis\imovel.component.ts" />
@@ -57,6 +58,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\corretores\corretor-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\corretores\corretor.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\corretores\corretor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\donos\dono-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\donos\dono.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\donos\dono.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\imoveis\imovel.component.ts" />

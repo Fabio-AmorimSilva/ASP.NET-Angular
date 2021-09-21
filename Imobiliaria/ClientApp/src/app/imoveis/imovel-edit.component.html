@@ -1,0 +1,58 @@
+<div class="imovel-edit">
+  <h1>{{ title }}</h1>
+
+  <p *ngIf="!imovel">Carregando...</p>
+
+  <div class="form" [formGroup]="form" (onSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="idDono">ID Dono:</label>
+      <br />
+      <input type="number" id="idDono"
+             formControlName="idDono" required
+             placeholder="ID Dono..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="idAgencia">ID Agência:</label>
+      <br />
+      <input type="number" id="idAgencia"
+             formControlName="idAgencia" required
+             placeholder="ID Agência..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="endereco">Endereço:</label>
+      <br />
+      <input type="text" id="endereco"
+             formControlName="endereco" required
+             placeholder="Endereço..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="preco">Preço:</label>
+      <br />
+      <input type="number" id="preço"
+             formControlName="preco" required
+             placeholder="Preço..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group commands">
+      <button type="submit"
+              (click)="onSubmit()"
+              class="btn-success">
+        Gravar
+      </button>
+      <button type="submit"
+              [routerLink]="['/imoveis']"
+              class="btn">
+        Cancelar
+      </button>
+
+    </div>
+  </div>
+</div>

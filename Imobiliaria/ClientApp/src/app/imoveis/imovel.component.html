@@ -25,7 +25,8 @@
 
   <ng-container matColumnDef="endereco">
     <th mat-header-cell *matHeaderCellDef>Endereço</th>
-    <td mat-cell *matCellDef="let imovel">{{ imovel.endereco }}</td>
+    <td mat-cell *matCellDef="let imovel">
+      <a [routerLink]="['/imovel', imovel.id]">{{ imovel.endereco }}</a></td>
   </ng-container>
 
   <ng-container matColumnDef="preco">

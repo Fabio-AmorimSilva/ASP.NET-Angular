@@ -46,6 +46,7 @@
     <None Remove="ClientApp\src\app\donos\dono-edit.component.ts" />
     <None Remove="ClientApp\src\app\donos\dono.component.ts" />
     <None Remove="ClientApp\src\app\donos\dono.ts" />
+    <None Remove="ClientApp\src\app\imoveis\imovel-edit.component.ts" />
     <None Remove="ClientApp\src\app\imoveis\imovel.component.ts" />
     <None Remove="ClientApp\src\app\imoveis\imovel.ts" />
   </ItemGroup>
@@ -61,6 +62,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\donos\dono-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\donos\dono.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\donos\dono.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\imoveis\imovel-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\imoveis\imovel.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\imoveis\imovel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\angular-material.module.ts" />

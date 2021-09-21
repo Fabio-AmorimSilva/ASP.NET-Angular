@@ -8,6 +8,7 @@ import { CorretorEditComponent } from './corretores/corretor-edit.component';
 import { DonoComponent } from './donos/dono.component';
 import { DonoEditComponent } from './donos/dono-edit.component';
 import { ImovelComponent } from './imoveis/imovel.component';
+import { ImovelEditComponent } from './imoveis/imovel-edit.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'corretor/:id', component: CorretorEditComponent },
   { path: 'donos', component: DonoComponent },
   { path: 'dono/:id', component: DonoEditComponent },
-  { path: 'imoveis', component: ImovelComponent }
+  { path: 'imoveis', component: ImovelComponent },
+  { path: 'imovel/:id', component: ImovelEditComponent }
 
 ];
 

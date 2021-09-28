@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'agencias', component: AgenciaComponent },
   { path: 'agencia/:id', component: AgenciaEditComponent },
+  { path: 'agencia', component: AgenciaEditComponent },
   { path: 'corretores', component: CorretorComponent },
   { path: 'corretor/:id', component: CorretorEditComponent },
   { path: 'donos', component: DonoComponent },

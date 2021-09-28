@@ -4,6 +4,14 @@
 
 <p *ngIf="!agencias"><em>Carregando...</em></p>
 
+<div class="commands text-right" *ngIf="agencias">
+  <button type="submit"
+          [routerLink]="['/agencia']"
+          class="btn-primary btn-success">
+    Adicionar agência
+  </button>
+</div>
+
 <table mat-table [dataSource]="agencias"
        class="table-striped mat-elevation-z8"
        [hidden]="!agencias">

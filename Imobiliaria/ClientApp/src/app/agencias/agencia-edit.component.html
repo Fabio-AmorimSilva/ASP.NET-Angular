@@ -1,7 +1,7 @@
 <div class="agencia-edit">
   <h1>{{ title }}</h1>
 
-  <p *ngIf="!agencia"><em>Carregando...</em></p>
+  <p *ngIf="this.id && !agencia"><em>Carregando...</em></p>
 
   <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 

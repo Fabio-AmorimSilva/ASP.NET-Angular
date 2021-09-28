@@ -23,6 +23,9 @@ export class AgenciaEditComponent implements OnInit {
   //O objeto
   agencia: Agencia;
 
+  //id
+  id?: number;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -44,42 +47,61 @@ export class AgenciaEditComponent implements OnInit {
 
   }
 
-    loadData(){
+  loadData() {
 
-      //Retorna os dados por ID
-      var id = +this.activatedRoute.snapshot.paramMap.get('id');
+    //Retorna os dados por ID
+    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
 
-      // Busca a agência no servidor
-      var url = this.baseUrl + 'api/Agencias/' + id;
-      this.http.get<Agencia>(url)
-        .subscribe(result => {
-          this.agencia = result;
-          this.title = "Edit - " + this.agencia.nome;
+    // Busca a agência no servidor
+    var url = this.baseUrl + 'api/Agencias/' + this.id;
+    this.http.get<Agencia>(url)
+      .subscribe(result => {
+        this.agencia = result;
+        this.title = "Edit - " + this.agencia.nome;
 
-          //Atualiza o formulário com o valor da agencia
-          this.form.patchValue(this.agencia);
+        //Atualiza o formulário com o valor da agencia
+        this.form.patchValue(this.agencia);
 
-        }, error => console.error(error));
-    }
+      }, error => console.error(error));
+  }
 
   onSubmit() {
-    var agencia = this.agencia;
+    var agencia = (this.id) ? this.agencia : <Agencia>{};
 
     agencia.nome = this.form.get("nome").value;
     agencia.cidade = this.form.get("cidade").value;
     agencia.idCorretor = this.form.get("idCorretor").value;
     agencia.idImovel = this.form.get("idImovel").value;
 
-    var url = this.baseUrl + "api/Agencias/" + this.agencia.id;
-    this.http.put<Agencia>(url, agencia)
-      .subscribe(result => {
+    if (this.id) {
 
-        console.log("Agência " + this.agencia.id + " foi atualizada.");
+      //Modo edição
 
-        //Volta para lista de agências
-        this.router.navigate(['/agencias']);
-      }, error => console.error(error));
+      var url = this.baseUrl + "api/Agencias/" + this.agencia.id;
+      this.http.put<Agencia>(url, agencia)
+        .subscribe(result => {
 
+          console.log("Agência " + this.agencia.id + " foi atualizada.");
+
+          //Volta para lista de agências
+          this.router.navigate(['/agencias']);
+        }, error => console.error(error));
+
+    } else {
+
+      //Modo adição
+      var url = this.baseUrl + "api/Agencias";
+      this.http.post<Agencia>(url, agencia)
+        .subscribe(result => {
+
+          console.log("Agência " + result.id + " foi criada");
+
+          //Volta para lista de agências
+          this.router.navigate(['/agencias']);
+
+        }, error => console.error(error));
     }
   }
+
+}
 

@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'agencia', component: AgenciaEditComponent },
   { path: 'corretores', component: CorretorComponent },
   { path: 'corretor/:id', component: CorretorEditComponent },
+  { path: 'corretor', component: CorretorEditComponent },
   { path: 'donos', component: DonoComponent },
   { path: 'dono/:id', component: DonoEditComponent },
   { path: 'imoveis', component: ImovelComponent },

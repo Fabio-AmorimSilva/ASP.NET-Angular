@@ -1,7 +1,7 @@
 <div class="corretor-edit">
   <h1>{{ title }}</h1>
 
-  <p *ngIf="!corretor"><em>Carregando...</em></p>
+  <p *ngIf="this.id && !corretor"><em>Carregando...</em></p>
 
   <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 

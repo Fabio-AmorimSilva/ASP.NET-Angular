@@ -2,6 +2,14 @@
 
 <p *ngIf="!corretores"><em>Carregando...</em></p>
 
+<div class="commands text-right" *ngIf="corretores">
+  <button type="submit"
+          [routerLink]="['/corretor']"
+          class="btn-primary btn-success">
+    Adicionar Corretor
+  </button>
+</div>
+
 <table mat-table [dataSource]="corretores"
        class="table-striped mat-elevation-z8"
        [hidden]="!corretores">

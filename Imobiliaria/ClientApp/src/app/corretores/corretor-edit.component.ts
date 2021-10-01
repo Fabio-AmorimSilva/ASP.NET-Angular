@@ -25,6 +25,9 @@ export class CorretorEditComponent implements OnInit {
   //O Objeto
   corretor: Corretor;
 
+  //Id do corretor
+  id?: number;
+
   constructor(
     private activetedRoute: ActivatedRoute,
     private router: Router,
@@ -48,10 +51,10 @@ export class CorretorEditComponent implements OnInit {
   loadData() {
 
     //Retorna os dados por id
-    var id = +this.activetedRoute.snapshot.paramMap.get('id');
+    this.id = +this.activetedRoute.snapshot.paramMap.get('id');
 
     //Busca o corretor no servidor
-    var url = this.baseUrl + "api/Corretores/" + id;
+    var url = this.baseUrl + "api/Corretores/" + this.id;
     this.http.get<Corretor>(url)
       .subscribe(result => {
         this.corretor = result;
@@ -65,23 +68,41 @@ export class CorretorEditComponent implements OnInit {
   }
 
   onSubmit() {
-    var corretor = this.corretor;
+    var corretor = (this.id) ? this.corretor : <Corretor>{};
 
     corretor.idAgencia = this.form.get("idAgencia").value;
     corretor.nome = this.form.get("nome").value;
     corretor.idade = this.form.get("idade").value;
     corretor.vendas = this.form.get("vendas").value;
 
-    var url = this.baseUrl + "api/Corretores/" + this.corretor.id;
-    this.http.put<Corretor>(url, corretor)
-      .subscribe(result => {
+    if (this.id) {
 
-        console.log("Corretor " + this.corretor.id + " foi atualizado");
+      var url = this.baseUrl + "api/Corretores/" + this.corretor.id;
+      this.http.put<Corretor>(url, corretor)
+        .subscribe(result => {
 
-        //Volta para lista de corretores
-        this.router.navigate(['/corretores']);
+          console.log("Corretor " + this.corretor.id + " foi atualizado");
 
-      }, error => console.error(error));
+          //Volta para lista de corretores
+          this.router.navigate(['/corretores']);
+
+
+        }, error => console.error(error));
+
+    } else {
+
+      var url = this.baseUrl + "api/Corretores";
+      this.http.post<Corretor>(url, corretor)
+        .subscribe(result => {
+
+          console.log("Corretor " + result.id + " foi criado.");
+
+          //Volta para lista de corretores
+          this.router.navigate(['/corretores']);
+
+        }, error => console.error(error));
+
+    }
 
   }
 

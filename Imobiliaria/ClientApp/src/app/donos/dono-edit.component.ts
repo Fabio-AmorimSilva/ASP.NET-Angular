@@ -23,6 +23,9 @@ export class DonoEditComponent implements OnInit {
   //Objeto para ser editado
   dono: Dono;
 
+  //id do Dono
+  id?: number;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private route: Router,
@@ -44,10 +47,10 @@ export class DonoEditComponent implements OnInit {
   loadData() {
 
     //Retorna dados por id
-    var id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
 
     //Buscando o objeto correspondente a identificação
-    var url = this.baseUrl + 'api/Donos/' + id;
+    var url = this.baseUrl + 'api/Donos/' + this.id;
     this.http.get<Dono>(url)
       .subscribe(result => {
         this.dono = result,
@@ -62,23 +65,39 @@ export class DonoEditComponent implements OnInit {
 
     onSubmit() {
 
-      var dono = this.dono;
+      var dono = (this.id) ? this.dono : <Dono>{};
 
       dono.nome = this.form.get('nome').value;
       dono.idade = this.form.get('idade').value;
       dono.imovel = this.form.get('imovel').value;
 
-      var url = this.baseUrl + 'api/Donos/' + this.dono.id;
-      this.http.put<Dono>(url, dono)
-        .subscribe(result => {
+      if (this.id) {
 
-          console.log("Dono " + this.dono.id + " foi editado com sucesso.");
+        var url = this.baseUrl + 'api/Donos/' + this.dono.id;
+        this.http.put<Dono>(url, dono)
+          .subscribe(result => {
 
-          //Volta para lista de donos
-          this.route.navigate(['/donos']);
+            console.log("Dono " + this.dono.id + " foi editado com sucesso.");
 
-        }, error => console.error(error));
+            //Volta para lista de donos
+            this.route.navigate(['/donos']);
 
+          }, error => console.error(error));
+
+      } else {
+
+        var url = this.baseUrl + "api/Donos";
+        this.http.post<Dono>(url, dono)
+          .subscribe(result => {
+
+            console.log("Dono " + result.id + " for criado.");
+
+            //Volta para lista de donos
+            this.route.navigate(['/donos']);
+
+          }, error => console.log(error));
+
+      }
 
   }
 

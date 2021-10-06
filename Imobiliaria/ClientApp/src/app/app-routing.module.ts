@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'corretor', component: CorretorEditComponent },
   { path: 'donos', component: DonoComponent },
   { path: 'dono/:id', component: DonoEditComponent },
+  { path: 'dono', component: DonoEditComponent },
   { path: 'imoveis', component: ImovelComponent },
   { path: 'imovel/:id', component: ImovelEditComponent }
 

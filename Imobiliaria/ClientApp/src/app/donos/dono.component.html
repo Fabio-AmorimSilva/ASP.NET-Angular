@@ -4,6 +4,14 @@
 
 <p *ngIf="!donos"><em>Carregando...</em></p>
 
+<div class="commands text-right" *ngIf="donos">
+  <button type="submit"
+          [routerLink]="['/dono']"
+          class="btn-primary btn-success">
+    Adicionar dono
+  </button>
+</div>
+
 <table mat-table [dataSource]="donos"
        class="table-striped mat-elevation-z8"
        [hidden]="!donos">

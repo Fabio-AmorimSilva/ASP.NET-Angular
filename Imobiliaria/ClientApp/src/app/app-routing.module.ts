@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'dono/:id', component: DonoEditComponent },
   { path: 'dono', component: DonoEditComponent },
   { path: 'imoveis', component: ImovelComponent },
-  { path: 'imovel/:id', component: ImovelEditComponent }
+  { path: 'imovel/:id', component: ImovelEditComponent },
+  { path: 'imovel', component: ImovelEditComponent }
 
 ];
 

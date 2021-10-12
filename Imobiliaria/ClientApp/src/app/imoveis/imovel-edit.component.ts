@@ -23,6 +23,9 @@ export class ImovelEditComponent implements OnInit {
   //O Objeto
   imovel: Imovel;
 
+  //Id do imóvel
+  id?: number;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private route: Router,
@@ -45,10 +48,10 @@ export class ImovelEditComponent implements OnInit {
   loadData() {
 
     //Retorna dados por id
-    var id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
 
     //Buscando o objeto correspondente a identificação
-    var url = this.baseUrl + 'api/Imoveis/' + id;
+    var url = this.baseUrl + 'api/Imoveis/' + this.id;
     this.http.get<Imovel>(url)
       .subscribe(result => {
         this.imovel = result,
@@ -63,23 +66,40 @@ export class ImovelEditComponent implements OnInit {
 
   onSubmit() {
 
-    var imovel = this.imovel;
+    var imovel = (this.id) ? this.imovel : <Imovel>{};
 
     imovel.idDono = this.form.get('idDono').value;
     imovel.idAgencia = this.form.get('idAgencia').value;
     imovel.endereco = this.form.get('endereco').value;
     imovel.preco = this.form.get('preco').value;
 
-    var url = this.baseUrl + 'api/Imoveis/' + this.imovel.id;
-    this.http.put(url, imovel)
-      .subscribe(result => {
+    if (this.id) {
 
-        console.log("Imóvel " + this.imovel.id + " atualizado com sucesso.");
+      var url = this.baseUrl + 'api/Imoveis/' + this.imovel.id;
+      this.http.put(url, imovel)
+        .subscribe(result => {
 
-        //Volta para lista de imóveis
-        this.route.navigate(['/imoveis']);
+          console.log("Imóvel " + this.imovel.id + " atualizado com sucesso.");
 
-      }, error => console.error(error));
+          //Volta para lista de imóveis
+          this.route.navigate(['/imoveis']);
+
+        }, error => console.error(error));
+
+    } else {
+
+      var url = this.baseUrl + 'api/Imoveis';
+      this.http.post<Imovel>(url, imovel)
+        .subscribe(result => {
+
+          console.log("Imóvel " + result.id + " foi criado.");
+
+          //Volta para a lista de imóveis
+          this.route.navigate(['/imoveis']);
+
+        }, error => console.error(error));
+
+    }
 
   }
 

@@ -1,7 +1,7 @@
 <div class="imovel-edit">
   <h1>{{ title }}</h1>
 
-  <p *ngIf="!imovel">Carregando...</p>
+  <p *ngIf="this.id && !imovel">Carregando...</p>
 
   <div class="form" [formGroup]="form" (onSubmit)="onSubmit()">
 

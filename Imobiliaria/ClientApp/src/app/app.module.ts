@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AgenciaComponent } from './agencias/agencia.component';
 import { AgenciaEditComponent } from './agencias/agencia-edit.component';
+import { AgenciaDeleteComponent } from './agencias/agencia-delete.component';
 import { CorretorComponent } from './corretores/corretor.component';
 import { CorretorEditComponent } from './corretores/corretor-edit.component';
 import { DonoComponent } from './donos/dono.component';
@@ -26,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     AgenciaComponent,
     AgenciaEditComponent,
+    AgenciaDeleteComponent,
     CorretorComponent,
     CorretorEditComponent,
     DonoComponent,

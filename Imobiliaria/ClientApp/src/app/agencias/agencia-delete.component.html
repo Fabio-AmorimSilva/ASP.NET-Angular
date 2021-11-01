@@ -1,0 +1,56 @@
+<div class="agencia-delete">
+  <h1>{{ title }}</h1>
+
+  <p *ngIf="!agencia"><em>Carregando...</em></p>
+
+  <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="nome">Nome Agência:</label>
+      <br />
+      <input type="text" id="nome"
+             formControlName="nome" readonly
+             placeholder="Nome..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="cidade">Cidade:</label>
+      <br />
+      <input type="text" id="cidade"
+             formControlName="cidade" readonly
+             placeholder="Cidade..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="idCorretor">ID Corretor:</label>
+      <input type="number" id="idCorretor"
+             formControlName="idCorretor" readonly
+             placeholder="idCorretor"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="idImovel">ID Imóvel:</label>
+      <br />
+      <input type="number" id="idImovel"
+             formControlName="idImovel" readonly
+             placeholder="idImovel"
+             class="form-control" />
+    </div>
+
+    <div class="form-group" commands>
+      <button type="submit"
+              (click)="onSubmit()"
+              class="btn btn-success">
+        Deletar
+      </button>
+      <button type="submit"
+              [routerLink]="['/agencias']"
+              class="btn">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

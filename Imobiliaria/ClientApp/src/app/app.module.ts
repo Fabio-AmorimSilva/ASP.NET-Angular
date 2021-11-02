@@ -12,6 +12,7 @@ import { AgenciaEditComponent } from './agencias/agencia-edit.component';
 import { AgenciaDeleteComponent } from './agencias/agencia-delete.component';
 import { CorretorComponent } from './corretores/corretor.component';
 import { CorretorEditComponent } from './corretores/corretor-edit.component';
+import { CorretorDeleteComponent } from './corretores/corretor-delete.component';
 import { DonoComponent } from './donos/dono.component';
 import { DonoEditComponent } from './donos/dono-edit.component';
 import { ImovelComponent } from './imoveis/imovel.component';
@@ -30,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AgenciaDeleteComponent,
     CorretorComponent,
     CorretorEditComponent,
+    CorretorDeleteComponent,
     DonoComponent,
     DonoEditComponent,
     ImovelComponent,

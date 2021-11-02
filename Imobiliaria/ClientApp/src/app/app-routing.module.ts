@@ -6,6 +6,7 @@ import { AgenciaEditComponent } from './agencias/agencia-edit.component';
 import { AgenciaDeleteComponent } from './agencias/agencia-delete.component';
 import { CorretorComponent } from './corretores/corretor.component';
 import { CorretorEditComponent } from './corretores/corretor-edit.component';
+import { CorretorDeleteComponent } from './corretores/corretor-delete.component';
 import { DonoComponent } from './donos/dono.component';
 import { DonoEditComponent } from './donos/dono-edit.component';
 import { ImovelComponent } from './imoveis/imovel.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'corretores', component: CorretorComponent },
   { path: 'corretor/:id', component: CorretorEditComponent },
   { path: 'corretor', component: CorretorEditComponent },
+  { path: 'corretor-delete/:id', component: CorretorDeleteComponent },
   { path: 'donos', component: DonoComponent },
   { path: 'dono/:id', component: DonoEditComponent },
   { path: 'dono', component: DonoEditComponent },

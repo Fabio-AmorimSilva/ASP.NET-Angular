@@ -19,14 +19,16 @@
   <!-- Coluna Id -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let agencia">{{ agencia.id }}</td>
+    <td mat-cell *matCellDef="let agencia">
+      <a [routerLink]="['/agencia-delete', agencia.id]">{{ agencia.id }}</a>
+    </td>
   </ng-container>
 
   <!-- Coluna nome -->
   <ng-container matColumnDef="nome">
     <th mat-header-cell *matHeaderCellDef>Nome</th>
     <td mat-cell *matCellDef="let agencia">
-      <a [routerLink]="['/agencia-delete', agencia.id]">{{ agencia.nome }}</a>
+      <a [routerLink]="['/agencia', agencia.id]">{{ agencia.nome }}</a>
     </td>
   </ng-container>
 

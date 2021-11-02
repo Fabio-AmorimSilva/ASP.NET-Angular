@@ -17,7 +17,8 @@
   <!-- Coluna ID-->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let corretor">{{ corretor.id }}</td>
+    <td mat-cell *matCellDef="let corretor">
+      <a [routerLink]="['/corretor-delete', corretor.id]">{{ corretor.id }}</a></td>
   </ng-container>
 
   <!-- Coluna ID Agência -->

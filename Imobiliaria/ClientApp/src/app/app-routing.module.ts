@@ -9,6 +9,7 @@ import { CorretorEditComponent } from './corretores/corretor-edit.component';
 import { CorretorDeleteComponent } from './corretores/corretor-delete.component';
 import { DonoComponent } from './donos/dono.component';
 import { DonoEditComponent } from './donos/dono-edit.component';
+import { DonoDeleteComponent } from './donos/dono-delete.component';
 import { ImovelComponent } from './imoveis/imovel.component';
 import { ImovelEditComponent } from './imoveis/imovel-edit.component';
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'donos', component: DonoComponent },
   { path: 'dono/:id', component: DonoEditComponent },
   { path: 'dono', component: DonoEditComponent },
+  { path: 'dono-delete/:id', component: DonoDeleteComponent },
   { path: 'imoveis', component: ImovelComponent },
   { path: 'imovel/:id', component: ImovelEditComponent },
   { path: 'imovel', component: ImovelEditComponent }

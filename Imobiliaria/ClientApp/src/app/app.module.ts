@@ -15,6 +15,7 @@ import { CorretorEditComponent } from './corretores/corretor-edit.component';
 import { CorretorDeleteComponent } from './corretores/corretor-delete.component';
 import { DonoComponent } from './donos/dono.component';
 import { DonoEditComponent } from './donos/dono-edit.component';
+import { DonoDeleteComponent } from './donos/dono-delete.component';
 import { ImovelComponent } from './imoveis/imovel.component';
 import { ImovelEditComponent } from './imoveis/imovel-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CorretorDeleteComponent,
     DonoComponent,
     DonoEditComponent,
+    DonoDeleteComponent,
     ImovelComponent,
     ImovelEditComponent
     

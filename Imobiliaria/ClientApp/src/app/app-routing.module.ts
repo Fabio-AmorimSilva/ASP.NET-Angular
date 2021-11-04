@@ -12,6 +12,7 @@ import { DonoEditComponent } from './donos/dono-edit.component';
 import { DonoDeleteComponent } from './donos/dono-delete.component';
 import { ImovelComponent } from './imoveis/imovel.component';
 import { ImovelEditComponent } from './imoveis/imovel-edit.component';
+import { ImovelDeleteComponent } from './imoveis/imovel-delete.component';
 
 
 
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'dono-delete/:id', component: DonoDeleteComponent },
   { path: 'imoveis', component: ImovelComponent },
   { path: 'imovel/:id', component: ImovelEditComponent },
-  { path: 'imovel', component: ImovelEditComponent }
+  { path: 'imovel', component: ImovelEditComponent },
+  { path: 'imovel-delete/:id', component: ImovelDeleteComponent }
 
 ];
 

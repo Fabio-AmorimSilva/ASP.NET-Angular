@@ -18,6 +18,7 @@ import { DonoEditComponent } from './donos/dono-edit.component';
 import { DonoDeleteComponent } from './donos/dono-delete.component';
 import { ImovelComponent } from './imoveis/imovel.component';
 import { ImovelEditComponent } from './imoveis/imovel-edit.component';
+import { ImovelDeleteComponent } from './imoveis/imovel-delete.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DonoEditComponent,
     DonoDeleteComponent,
     ImovelComponent,
-    ImovelEditComponent
+    ImovelEditComponent,
+    ImovelDeleteComponent
     
 
   ],

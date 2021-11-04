@@ -1,0 +1,58 @@
+<div class="imovel-delete">
+  <h1>{{ title }}</h1>
+
+  <p *ngIf="this.id && !imovel">Carregando...</p>
+
+  <div class="form" [formGroup]="form" (onSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="idDono">ID Dono:</label>
+      <br />
+      <input type="number" id="idDono"
+             formControlName="idDono" readonly
+             placeholder="ID Dono..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="idAgencia">ID Agência:</label>
+      <br />
+      <input type="number" id="idAgencia"
+             formControlName="idAgencia" readonly
+             placeholder="ID Agência..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="endereco">Endereço:</label>
+      <br />
+      <input type="text" id="endereco"
+             formControlName="endereco" readonly
+             placeholder="Endereço..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="preco">Preço:</label>
+      <br />
+      <input type="number" id="preço"
+             formControlName="preco" readonly
+             placeholder="Preço..."
+             class="form-control" />
+    </div>
+
+    <div class="form-group commands">
+      <button type="submit"
+              (click)="onSubmit()"
+              class="btn btn-success">
+        Deletar
+      </button>
+      <button type="submit"
+              [routerLink]="['/imoveis']"
+              class="btn">
+        Cancelar
+      </button>
+
+    </div>
+  </div>
+</div>

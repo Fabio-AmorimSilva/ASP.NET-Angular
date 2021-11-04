@@ -23,7 +23,8 @@
 
   <ng-container matColumnDef="idDono">
     <th mat-header-cell *matHeaderCellDef>ID Dono</th>
-    <td mat-cell *matCellDef="let imovel">{{ imovel.idDono }}</td>
+    <td mat-cell *matCellDef="let imovel">
+      <a [routerLink]="['/imovel-delete', imovel.id]">{{ imovel.idDono }}</a></td>
   </ng-container>
 
   <ng-container matColumnDef="idAgencia">

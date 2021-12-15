@@ -21,6 +21,9 @@ Imobiliaria
   
   World Cities
   - Projeto clone do Livro ASP.NET Core 5 and Angular - Fourth Edition (Valério de Sanctis)
-    - Utilização das principais tecnologias envolvendo C#, ASP.NET e Angular
-    - Dicas de performance e design.
-    - Explicações teóricas e demonstrações de código.
+  - Utilização das principais tecnologias envolvendo C#, ASP.NET e Angular
+  - Dicas de performance e design.
+  - Explicações teóricas e demonstrações de código.
+
+- Todos os códigos foram feitos com a utlização da IDE Visual Studio Code e podem ser executados com a mesma.
+- Os bancos de dados devem ser substituídos devido ao uso do arquivo secrets.json que armazena os dados de acesso localmente.

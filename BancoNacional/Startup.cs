@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace BancoNacional
 {
@@ -31,6 +32,8 @@ namespace BancoNacional
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +42,7 @@ namespace BancoNacional
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
@@ -55,6 +59,7 @@ namespace BancoNacional
             }
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

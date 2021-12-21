@@ -1,0 +1,21 @@
+<p *ngIf="!agencias"><em>Carregando...</em></p>
+
+<table class="table table-striped" aria-labelledby="tableLabel"
+       [hidden]="!agencias">
+  <thead>
+    <th>Código Agência</th>
+    <th>Nome</th>
+    <th>Localização</th>
+    <th>Número de Clientes</th>
+    <th>Gerente</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agencia of agencias">
+      <td>{{ agencia.codigo_agencia }}</td>
+      <td>{{ agencia.nome }}</td>
+      <td>{{ agencia.localizacao }}</td>
+      <td>{{ agencia.numero_clientes }}</td>
+      <td>{{ agencia.gerente }}</td>
+    </tr>
+  </tbody>
+</table>

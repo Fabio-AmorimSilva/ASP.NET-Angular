@@ -13,7 +13,7 @@ namespace BancoNacional.Data
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Gerentes> Gerentes { get; set; }
         public DbSet<ContaCorrente> ContaCorrente { get; set; }
-        public DbSet<ContaPoupanca> contaPoupanca { get; set; }
+        public DbSet<ContaPoupanca> ContaPoupanca { get; set; }
 
     }
 }

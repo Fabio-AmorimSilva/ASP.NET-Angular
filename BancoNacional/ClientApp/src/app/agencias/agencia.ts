@@ -1,5 +1,5 @@
 export interface Agencia{
-  codigo_agencia: string,
+  codigo_agencia: number,
   nome: string,
   localizacao: string,
   numero_clientes: number,

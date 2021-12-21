@@ -25,14 +25,14 @@ namespace BancoNacional.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ContaPoupanca>>> GetContaPoupanca()
         {
-            return await _context.contaPoupanca.ToListAsync();
+            return await _context.ContaPoupanca.ToListAsync();
         }
 
         // GET: api/ContaPoupanca/id
         [HttpGet("{id}")]
         public async Task<ActionResult<ContaPoupanca>> GetContaPoupanca(int id)
         {
-            var contaPoupanca = await _context.contaPoupanca.FindAsync(id);
+            var contaPoupanca = await _context.ContaPoupanca.FindAsync(id);
 
             if (contaPoupanca == null)
             {
@@ -76,7 +76,7 @@ namespace BancoNacional.Controllers
         [HttpPost]
         public async Task<ActionResult<ContaPoupanca>> PostContaPoupanca(ContaPoupanca contaPoupanca)
         {
-            _context.contaPoupanca.Add(contaPoupanca);
+            _context.ContaPoupanca.Add(contaPoupanca);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetContaPoupanca", new { id = contaPoupanca.CODIGO_CONTA }, contaPoupanca);
@@ -86,13 +86,13 @@ namespace BancoNacional.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContaPoupanca(int id)
         {
-            var contaPoupanca = await _context.contaPoupanca.FindAsync(id);
+            var contaPoupanca = await _context.ContaPoupanca.FindAsync(id);
             if (contaPoupanca == null)
             {
                 return NotFound();
             }
 
-            _context.contaPoupanca.Remove(contaPoupanca);
+            _context.ContaPoupanca.Remove(contaPoupanca);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -100,7 +100,7 @@ namespace BancoNacional.Controllers
 
         private bool ContaPoupancaExists(int id)
         {
-            return _context.contaPoupanca.Any(e => e.CODIGO_CONTA == id);
+            return _context.ContaPoupanca.Any(e => e.CODIGO_CONTA == id);
         }
     }
 }

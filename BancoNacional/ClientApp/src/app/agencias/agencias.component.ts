@@ -20,6 +20,10 @@ export class AgenciasComponent implements OnInit {
     @Inject('BASE_URL') private baseUrl: string) { }
 
   ngOnInit() {
+    this.loadAgencias();
+  }
+
+  loadAgencias() {
     var url = this.baseUrl + 'api/Agencias';
     this.http.get<Agencia[]>(url)
       .subscribe(result => {

@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AgenciasComponent } from './agencias/agencias.component';
+import { ClientesComponent } from './clientes/clientes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    AgenciasComponent
+    AgenciasComponent,
+    ClientesComponent
 
   ],
   imports: [

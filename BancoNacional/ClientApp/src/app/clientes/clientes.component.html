@@ -1,0 +1,21 @@
+<p *ngIf="!clientes"><em>Carregando...</em></p>
+
+<table class="table table-stripped" aria-labelledby="tableLabel"
+       [hidden]="!clientes">
+  <thead>
+    <th>Código Cliente</th>
+    <th>Código Agência</th>
+    <th>Nome</th>
+    <th>Tipo Conta</th>
+    <th>Saldo</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.codigoCliente }}</td>
+      <td>{{ cliente.codigoAgencia }}</td>
+      <td>{{ cliente.nome }}</td>
+      <td>{{ cliente.tipoConta }}</td>
+      <td>{{ cliente.saldo }}</td>
+    </tr>
+  </tbody>
+</table>

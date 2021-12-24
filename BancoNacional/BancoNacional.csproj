@@ -17,6 +17,15 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.5.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.2.3" />
@@ -28,6 +37,20 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\agencias\agencia.ts" />
+    <None Remove="ClientApp\src\app\agencias\agencias.component.ts" />
+    <None Remove="ClientApp\src\app\app-routing.module.ts" />
+    <None Remove="ClientApp\src\app\clientes\cliente.ts" />
+    <None Remove="ClientApp\src\app\clientes\clientes.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\agencias\agencia.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\agencias\agencias.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

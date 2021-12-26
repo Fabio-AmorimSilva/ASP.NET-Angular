@@ -1,0 +1,17 @@
+<p *ngIf="!gerentes"><em>Carregando...</em></p>
+
+<table class="table table-stripped" aria-labelledby="tableLabel"
+       [hidden]="!gerentes">
+  <thead>
+    <th>Código Gerentes</th>
+    <th>Código Agência</th>
+    <th>Nome</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let gerente of gerentes">
+      <td>{{ gerente.codigoGerente }}</td>
+      <td>{{ gerente.codigoAgencia }}</td>
+      <td>{{ gerente.nome }}</td>
+    </tr>
+  </tbody>
+</table>

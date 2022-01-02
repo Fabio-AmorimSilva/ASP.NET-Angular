@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AgenciasComponent } from './agencias/agencias.component';
+import { AgenciaEditComponent } from './agencias/agencia-edit.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { GerentesComponent } from './gerentes/gerentes.component';
 
@@ -18,8 +19,10 @@ import { GerentesComponent } from './gerentes/gerentes.component';
     NavMenuComponent,
     HomeComponent,
     AgenciasComponent,
+    AgenciaEditComponent,
     ClientesComponent,
     GerentesComponent,
+    
 
   ],
   imports: [

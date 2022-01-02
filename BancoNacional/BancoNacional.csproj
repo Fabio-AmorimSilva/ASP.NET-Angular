@@ -41,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\agencias\agencia-edit.component.ts" />
     <None Remove="ClientApp\src\app\agencias\agencia.ts" />
     <None Remove="ClientApp\src\app\agencias\agencias.component.ts" />
     <None Remove="ClientApp\src\app\app-routing.module.ts" />

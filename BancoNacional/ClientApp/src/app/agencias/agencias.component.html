@@ -1,5 +1,13 @@
 <p *ngIf="!agencias"><em>Carregando...</em></p>
 
+<div class="commands text-right" *ngIf="agencias">
+  <button type="submit"
+          [routerLink]="['/agencia']"
+          class="btn-primary btn-success">
+    Adicionar Agência
+  </button>
+</div>
+
 <table class="table table-striped" aria-labelledby="tableLabel"
        [hidden]="!agencias">
   <thead>
@@ -12,7 +20,7 @@
   <tbody>
     <tr *ngFor="let agencia of agencias">
       <td>{{ agencia.codigoAgencia }}</td>
-      <td>{{ agencia.nome }}</td>
+      <td><a [routerLink]="['agencia', agencia.codigoAgencia]">{{ agencia.nome }}</a></td>
       <td>{{ agencia.localizacao }}</td>
       <td>{{ agencia.numeroClientes }}</td>
       <td>{{ agencia.gerente }}</td>

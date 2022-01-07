@@ -19,8 +19,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let agencia of agencias">
-      <td>{{ agencia.codigoAgencia }}</td>
-      <td><a [routerLink]="['agencia', agencia.codigoAgencia]">{{ agencia.nome }}</a></td>
+      <td>{{ agencia.id }}</td>
+      <td><a [routerLink]="['/agencia', agencia.id]">{{ agencia.nome }}</a></td>
       <td>{{ agencia.localizacao }}</td>
       <td>{{ agencia.numeroClientes }}</td>
       <td>{{ agencia.gerente }}</td>

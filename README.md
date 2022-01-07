@@ -25,5 +25,5 @@ Imobiliaria
   - Dicas de performance e design.
   - Explicações teóricas e demonstrações de código.
 
-- Todos os códigos foram feitos com a utlização da IDE Visual Studio Code e podem ser executados com a mesma.
+- Todos os códigos foram feitos com a utlização da IDE Visual Studio e podem ser executados com a mesma.
 - Os bancos de dados devem ser substituídos devido ao uso do arquivo secrets.json que armazena os dados de acesso localmente.

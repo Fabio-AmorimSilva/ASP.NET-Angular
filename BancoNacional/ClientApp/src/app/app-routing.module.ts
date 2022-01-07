@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'agencias', component: AgenciasComponent },
   { path: 'agencia', component: AgenciaEditComponent },
-  { path: 'agencia/:codigoAgencia', component: AgenciaEditComponent },
+  { path: 'agencia/:id', component: AgenciaEditComponent },
   { path: 'clientes', component: ClientesComponent },
   { path: 'gerentes', component: GerentesComponent }
 

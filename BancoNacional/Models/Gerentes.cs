@@ -8,19 +8,25 @@ namespace BancoNacional.Models
     {
         public Gerentes() { }
 
-        [Key]
-        [Required]
+
         ///<summary>
         /// Chave primária da tabela GERENTES
         /// </summary>
-        public int CODIGO_GERENTE { get; set; }
-
-        [ForeignKey("GERENTES")]
+        [Key]
         [Required]
-        public int CODIGO_AGENCIA { get; set; }
+        public int Id { get; set; }
 
+        [ForeignKey("Agencia")]
+        [Required]
+        public int AgenciaId { get; set; }
+
+        [ForeignKey("Gerente")]
         [Required]
         public string NOME { get; set; }
+
+        public virtual Gerentes Gerente { get; set; }
+
+        public virtual Agencias Agencia { get; set; }
 
     }
 }

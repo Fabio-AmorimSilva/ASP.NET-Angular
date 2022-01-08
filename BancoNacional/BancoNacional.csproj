@@ -41,23 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\agencias\agencia-edit.component.ts" />
-    <None Remove="ClientApp\src\app\agencias\agencia.ts" />
-    <None Remove="ClientApp\src\app\agencias\agencias.component.ts" />
-    <None Remove="ClientApp\src\app\app-routing.module.ts" />
-    <None Remove="ClientApp\src\app\clientes\cliente.ts" />
-    <None Remove="ClientApp\src\app\clientes\clientes.component.ts" />
-    <None Remove="ClientApp\src\app\gerentes\gerente.ts" />
-    <None Remove="ClientApp\src\app\gerentes\gerentes.component.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\agencias\agencia.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\agencias\agencias.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 

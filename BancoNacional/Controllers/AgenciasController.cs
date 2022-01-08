@@ -46,7 +46,7 @@ namespace BancoNacional.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Agencias>> PutAgencia(int id, Agencias agencia)
         {
-            if(id != agencia.CODIGO_AGENCIA)
+            if(id != agencia.Id)
             {
                 return BadRequest();
             }
@@ -81,7 +81,7 @@ namespace BancoNacional.Controllers
             _context.Agencias.Add(agencia);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAgencia", new { CODIGO_AGENCIA = agencia.CODIGO_AGENCIA }, agencia);
+            return CreatedAtAction("GetAgencia", new { CODIGO_AGENCIA = agencia.Id }, agencia);
 
         }
 
@@ -104,7 +104,7 @@ namespace BancoNacional.Controllers
 
         private bool AgenciaExists(int id)
         {
-            return _context.Agencias.Any(e => e.CODIGO_AGENCIA == id);
+            return _context.Agencias.Any(e => e.Id == id);
 
         }
 

@@ -46,7 +46,7 @@ namespace BancoNacional.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutContaCorrente(int id, ContaCorrente contaCorrente)
         {
-            if (id != contaCorrente.CODIGO_CONTA)
+            if (id != contaCorrente.Id)
             {
                 return BadRequest();
             }
@@ -79,7 +79,7 @@ namespace BancoNacional.Controllers
             _context.ContaCorrente.Add(contaCorrente);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetContaCorrente", new { id = contaCorrente.CODIGO_CONTA }, contaCorrente);
+            return CreatedAtAction("GetContaCorrente", new { id = contaCorrente.Id }, contaCorrente);
         }
 
         // DELETE: api/ContaCorrente/id
@@ -100,7 +100,7 @@ namespace BancoNacional.Controllers
 
         private bool ContaCorrenteExists(int id)
         {
-            return _context.ContaCorrente.Any(e => e.CODIGO_CONTA == id);
+            return _context.ContaCorrente.Any(e => e.Id == id);
         }
     }
 }

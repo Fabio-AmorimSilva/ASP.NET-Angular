@@ -16,21 +16,21 @@ namespace BancoNacional.Models
         
         [Key]
         [Required]
-        public int CODIGO_AGENCIA { get; set; }
+        public int Id { get; set; }
 
-        [Required]
+       
         public string NOME { get; set; }
          
-        [Required]
+       
         public string LOCALIZACAO { get; set; }
 
-        [Required]
+       
         public int NUMERO_CLIENTES { get; set; }
 
-        [ForeignKey("GERENTE")]
-        [Required]
-        public int GERENTE { get; set; }
+        [ForeignKey("Gerente")]
+        public int GerenteId { get; set; }
 
+        public virtual Gerentes Gerente { get; set; }
 
     }
 

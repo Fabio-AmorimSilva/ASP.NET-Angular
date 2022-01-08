@@ -13,11 +13,11 @@ namespace BancoNacional.Models
         /// </summary>
         [Key]
         [Required]
-        public int CODIGO_CLIENTE { get; set; }
+        public int Id { get; set; }
 
-        [ForeignKey("CODIGO_AGENCIA")]
+        [ForeignKey("Agencia")]
         [Required]
-        public int CODIGO_AGENCIA { get; set; }
+        public int AgenciaId { get; set; }
 
         [Required]
         public int TIPO_CONTA { get; set; }
@@ -27,6 +27,8 @@ namespace BancoNacional.Models
 
         [Required]
         public int SALDO { get; set; }
+
+        public virtual Agencias Agencia { get; set; }
 
     }
 }

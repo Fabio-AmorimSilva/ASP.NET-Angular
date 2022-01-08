@@ -14,10 +14,12 @@ namespace BancoNacional.Models
         /// </summary>
         [Key]
         [Required]
-        public int CODIGO_CONTA { get; set; }
+        public int Id { get; set; }
 
-        [Required]
+        [ForeignKey("Dono")]
         public string DONO { get; set; }
+
+        public virtual Clientes Dono { get; set; }
 
 
     }

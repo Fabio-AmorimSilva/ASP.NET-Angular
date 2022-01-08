@@ -47,7 +47,7 @@ namespace BancoNacional.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Clientes>> PutCliente(int id, Clientes cliente)
         {
-            if (id != cliente.CODIGO_CLIENTE)
+            if (id != cliente.Id)
             {
                 return NotFound();
             }
@@ -81,7 +81,7 @@ namespace BancoNacional.Controllers
             _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetCliente", new { CODIGO_CLIENTE = cliente.CODIGO_CLIENTE}, cliente);
+            return CreatedAtRoute("GetCliente", new { CODIGO_CLIENTE = cliente.Id}, cliente);
 
         }
 
@@ -104,7 +104,7 @@ namespace BancoNacional.Controllers
 
         public bool ClienteExists(int id)
         {
-            return _context.Clientes.Any(e => e.CODIGO_CLIENTE == id);
+            return _context.Clientes.Any(e => e.Id == id);
         }
 
 

@@ -83,7 +83,7 @@ export class AgenciaEditComponent implements OnInit {
 
       //Método PUT
 
-      var url = this.baseUrl + 'api/Agencias/' + this.agencia.codigoAgencia;
+      var url = this.baseUrl + 'api/Agencias/' + this.agencia.id;
       this.http.put<Agencia>(url, agencia)
         .subscribe(result => {
 

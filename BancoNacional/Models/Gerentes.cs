@@ -20,8 +20,6 @@ namespace BancoNacional.Models
         [Required]
         public int AgenciaId { get; set; }
 
-        [ForeignKey("Gerente")]
-        [Required]
         public string NOME { get; set; }
 
         public virtual Gerentes Gerente { get; set; }

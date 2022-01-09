@@ -27,10 +27,7 @@ namespace BancoNacional.Models
        
         public int NUMERO_CLIENTES { get; set; }
 
-        [ForeignKey("Gerente")]
         public int GerenteId { get; set; }
-
-        public virtual Gerentes Gerente { get; set; }
 
     }
 

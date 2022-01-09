@@ -6,7 +6,7 @@ import { cliente } from './cliente';
 @Component({
   selector: 'app-clientes',
   templateUrl: 'clientes.component.html',
-  stylesUrl: ['./clientes.component.css']
+  styleUrls: ['./clientes.component.css']
 
 })
 

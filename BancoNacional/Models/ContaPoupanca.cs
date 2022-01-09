@@ -17,7 +17,7 @@ namespace BancoNacional.Models
         public int Id { get; set; }
 
         [ForeignKey("Dono")]
-        public string DONO { get; set; }
+        public int DONO { get; set; }
 
         public virtual Clientes Dono { get; set; }
 

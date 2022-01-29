@@ -14,25 +14,25 @@ namespace Imobiliaria.Controllers
     [ApiController]
     public class ImoveisController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _imobiliariaDb;
 
-        public ImoveisController(ApplicationDbContext context)
+        public ImoveisController(ApplicationDbContext imobiliariaDb)
         {
-            _context = context;
+            _imobiliariaDb = imobiliariaDb;
         }
 
         // GET: api/Imoveis
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Imovel>>> GetImoveis()
         {
-            return await _context.Imoveis.ToListAsync();
+            return await _imobiliariaDb.Imoveis.ToListAsync();
         }
 
         // GET: api/Imoveis/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Imovel>> GetImovel(int id)
         {
-            var imovel = await _context.Imoveis.FindAsync(id);
+            var imovel = await _imobiliariaDb.Imoveis.FindAsync(id);
 
             if (imovel == null)
             {
@@ -52,11 +52,11 @@ namespace Imobiliaria.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(imovel).State = EntityState.Modified;
+            _imobiliariaDb.Entry(imovel).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _imobiliariaDb.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,8 +78,8 @@ namespace Imobiliaria.Controllers
         [HttpPost]
         public async Task<ActionResult<Imovel>> PostImovel(Imovel imovel)
         {
-            _context.Imoveis.Add(imovel);
-            await _context.SaveChangesAsync();
+            _imobiliariaDb.Imoveis.Add(imovel);
+            await _imobiliariaDb.SaveChangesAsync();
 
             return CreatedAtAction("GetImovel", new { id = imovel.Id }, imovel);
         }
@@ -88,21 +88,21 @@ namespace Imobiliaria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteImovel(int id)
         {
-            var imovel = await _context.Imoveis.FindAsync(id);
+            var imovel = await _imobiliariaDb.Imoveis.FindAsync(id);
             if (imovel == null)
             {
                 return NotFound();
             }
 
-            _context.Imoveis.Remove(imovel);
-            await _context.SaveChangesAsync();
+            _imobiliariaDb.Imoveis.Remove(imovel);
+            await _imobiliariaDb.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool ImovelExists(int id)
         {
-            return _context.Imoveis.Any(e => e.Id == id);
+            return _imobiliariaDb.Imoveis.Any(e => e.Id == id);
         }
     }
 }

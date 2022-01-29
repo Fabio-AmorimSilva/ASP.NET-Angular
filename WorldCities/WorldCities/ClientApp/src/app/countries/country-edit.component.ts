@@ -153,6 +153,6 @@ export class CountryEditComponent implements OnInit {
         this.router.navigate(['/countries']);
       }, error => console.error(error));
   }
-  }
-
 }
+
+

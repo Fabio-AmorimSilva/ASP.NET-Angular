@@ -44,12 +44,8 @@ export class CityEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      name: new FormControl('', Validators.required),
-      lat: new FormControl('', Validators.required),
-      lon: new FormControl('', Validators.required),
-      countryId: new FormControl('', Validators.required)
-    }, null, this.isDupeCity());
+
+    this.createForm();
 
     this.loadData();
 
@@ -103,28 +99,14 @@ export class CityEditComponent implements OnInit {
 
     if (this.id) {
       // EDIT MODE
-
-      var url = this.baseUrl + "api/Cities/" + this.city.id;
-      this.http
-        .put<City>(url, city)
-        .subscribe(result => {
-          console.log("City " + city.id + " has been updated.");
-
-          // go back to cities view
-          this.router.navigate(['/cities']);
-        }, error => console.error(error));
+      this.editMode(city);
+     
     } else {
       // ADD NEW MODE
-      var url = this.baseUrl + "api/Cities";
-      this.http
-        .post<City>(url, city)
-        .subscribe(result => {
-          console.log("City " + result.id + " has been created.");
+      this.addMode(city);
 
-          // go bach to cities view
-          this.router.navigate(['/cities']);
-        }, error => console.error(error));
     }
+
   }
 
   isDupeCity(): AsyncValidatorFn {
@@ -142,4 +124,39 @@ export class CityEditComponent implements OnInit {
           }));
         }
   }
+
+  createForm() {
+    this.form = new FormGroup({
+      name: new FormControl('', Validators.required),
+      lat: new FormControl('', Validators.required),
+      lon: new FormControl('', Validators.required),
+      countryId: new FormControl('', Validators.required)
+    }, null, this.isDupeCity());
+  }
+
+  addMode(city) {
+    var url = this.baseUrl + "api/Cities";
+    this.http
+      .post<City>(url, city)
+      .subscribe(result => {
+        console.log("City " + result.id + " has been created.");
+
+        // go bach to cities view
+        this.router.navigate(['/cities']);
+      }, error => console.error(error));
+  }
+
+  editMode(city) {
+
+    var url = this.baseUrl + "api/Cities/" + this.city.id;
+    this.http
+      .put<City>(url, city)
+      .subscribe(result => {
+        console.log("City " + city.id + " has been updated.");
+
+        // go back to cities view
+        this.router.navigate(['/cities']);
+      }, error => console.error(error));
+  }
+
 }

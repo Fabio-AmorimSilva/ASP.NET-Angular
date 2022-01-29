@@ -14,11 +14,11 @@ namespace WorldCities.Controllers
     [ApiController]
     public class CountriesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _countriesDb;
 
-        public CountriesController(ApplicationDbContext context)
+        public CountriesController(ApplicationDbContext countriesDb)
         {
-            _context = context;
+            _countriesDb = countriesDb;
         }
 
         // GET: api/Cities
@@ -35,7 +35,7 @@ namespace WorldCities.Controllers
                 string filterQuery = null)
         {
             return await ApiResult<Country>.CreateAsync(
-                    _context.Countries,
+                    _countriesDb.Countries,
                     pageIndex,
                     pageSize,
                     sortColumn,
@@ -49,7 +49,7 @@ namespace WorldCities.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Country>> GetCountry(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
+            var country = await _countriesDb.Countries.FindAsync(id);
 
             if (country == null)
             {
@@ -69,11 +69,11 @@ namespace WorldCities.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(country).State = EntityState.Modified;
+            _countriesDb.Entry(country).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _countriesDb.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -95,8 +95,8 @@ namespace WorldCities.Controllers
         [HttpPost]
         public async Task<ActionResult<Country>> PostCountry(Country country)
         {
-            _context.Countries.Add(country);
-            await _context.SaveChangesAsync();
+            _countriesDb.Countries.Add(country);
+            await _countriesDb.SaveChangesAsync();
 
             return CreatedAtAction("GetCountry", new { id = country.Id }, country);
         }
@@ -105,21 +105,21 @@ namespace WorldCities.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Country>> DeleteCountry(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
+            var country = await _countriesDb.Countries.FindAsync(id);
             if (country == null)
             {
                 return NotFound();
             }
 
-            _context.Countries.Remove(country);
-            await _context.SaveChangesAsync();
+            _countriesDb.Countries.Remove(country);
+            await _countriesDb.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool CountryExists(int id)
         {
-            return _context.Countries.Any(e => e.Id == id);
+            return _countriesDb.Countries.Any(e => e.Id == id);
         }
 
         [HttpPost]

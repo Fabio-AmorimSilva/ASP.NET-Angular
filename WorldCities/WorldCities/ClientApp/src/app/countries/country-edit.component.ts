@@ -43,25 +43,8 @@ export class CountryEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      name: ['',
-        Validators.required,
-        this.isDupeField("name")
-      ],
-      iso2: ['',
-        [Validators.required,
-        Validators.pattern(/^[a-zA-Z]{2}$/)
-        ],
-        this.isDupeField("iso2")
-      ],
-      iso3: ['',
-        [
-          Validators.required,
-          Validators.pattern(/^[a-zA-Z]{3}$/)
-        ],
-        this.isDupeField("iso3")
-      ]
-    });
+
+    this.createForm();
 
     this.loadData();
 
@@ -100,27 +83,14 @@ export class CountryEditComponent implements OnInit {
 
     if (this.id) {
       //EDIT MODE
+      this.editMode(country);
 
-      var url = this.baseUrl + "api/Countries/" + this.country.id;
-      this.http.put<Country>(url, country)
-        .subscribe(result => {
-          console.log("Country " + country.id + " has been updated.");
-
-          //go back to cities view
-          this.router.navigate(['/countries']);
-        }, error => console.error(error));
     } else {
       // ADD NEW mode
-      var url = this.baseUrl + "api/Countries";
-      this.http.post<Country>(url, country)
-        .subscribe(result => {
+      this.addMode(country);
 
-          console.log("Country " + result.id + " has been created.");
-
-          //go back to cities view
-          this.router.navigate(['/countries']);
-        }, error => console.error(error));
     }
+
   }
 
   isDupeField(fieldName: string): AsyncValidatorFn {
@@ -137,4 +107,52 @@ export class CountryEditComponent implements OnInit {
         }));
     }
   }
+
+  createForm() {
+    this.form = this.fb.group({
+      name: ['',
+        Validators.required,
+        this.isDupeField("name")
+      ],
+      iso2: ['',
+        [Validators.required,
+        Validators.pattern(/^[a-zA-Z]{2}$/)
+        ],
+        this.isDupeField("iso2")
+      ],
+      iso3: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z]{3}$/)
+        ],
+        this.isDupeField("iso3")
+      ]
+    });
+  }
+
+  editMode(country) {
+
+    var url = this.baseUrl + "api/Countries/" + this.country.id;
+    this.http.put<Country>(url, country)
+      .subscribe(result => {
+        console.log("Country " + country.id + " has been updated.");
+
+        //go back to cities view
+        this.router.navigate(['/countries']);
+      }, error => console.error(error));
+  }
+
+  addMode(country) {
+    var url = this.baseUrl + "api/Countries";
+    this.http.post<Country>(url, country)
+      .subscribe(result => {
+
+        console.log("Country " + result.id + " has been created.");
+
+        //go back to cities view
+        this.router.navigate(['/countries']);
+      }, error => console.error(error));
+  }
+  }
+
 }

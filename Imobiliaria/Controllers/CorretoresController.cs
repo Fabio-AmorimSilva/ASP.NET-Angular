@@ -14,25 +14,25 @@ namespace Imobiliaria.Controllers
     [ApiController]
     public class CorretoresController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _imobiliariaDb;
 
-        public CorretoresController(ApplicationDbContext context)
+        public CorretoresController(ApplicationDbContext imobiliariaDb)
         {
-            _context = context;
+            _imobiliariaDb = imobiliariaDb;
         }
 
         // GET: api/Corretores
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Corretor>>> GetCorretores()
         {
-            return await _context.Corretores.ToListAsync();
+            return await _imobiliariaDb.Corretores.ToListAsync();
         }
 
         // GET: api/Corretores/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Corretor>> GetCorretor(int id)
         {
-            var corretor = await _context.Corretores.FindAsync(id);
+            var corretor = await _imobiliariaDb.Corretores.FindAsync(id);
 
             if (corretor == null)
             {
@@ -52,11 +52,11 @@ namespace Imobiliaria.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(corretor).State = EntityState.Modified;
+            _imobiliariaDb.Entry(corretor).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _imobiliariaDb.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,8 +78,8 @@ namespace Imobiliaria.Controllers
         [HttpPost]
         public async Task<ActionResult<Corretor>> PostCorretor(Corretor corretor)
         {
-            _context.Corretores.Add(corretor);
-            await _context.SaveChangesAsync();
+            _imobiliariaDb.Corretores.Add(corretor);
+            await _imobiliariaDb.SaveChangesAsync();
 
             return CreatedAtAction("GetCorretor", new { id = corretor.Id }, corretor);
         }
@@ -88,21 +88,21 @@ namespace Imobiliaria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCorretor(int id)
         {
-            var corretor = await _context.Corretores.FindAsync(id);
+            var corretor = await _imobiliariaDb.Corretores.FindAsync(id);
             if (corretor == null)
             {
                 return NotFound();
             }
 
-            _context.Corretores.Remove(corretor);
-            await _context.SaveChangesAsync();
+            _imobiliariaDb.Corretores.Remove(corretor);
+            await _imobiliariaDb.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool CorretorExists(int id)
         {
-            return _context.Corretores.Any(e => e.Id == id);
+            return _imobiliariaDb.Corretores.Any(e => e.Id == id);
         }
     }
 }

@@ -131,13 +131,13 @@ namespace WorldCities.Controllers
         {
             switch(fieldName){
                 case "name":
-                    return _context.Countries.Any(
+                    return _countriesDb.Countries.Any(
                         c => c.Name == fieldValue && c.Id != countryId);
                 case "iso2":
-                    return _context.Countries.Any(
+                    return _countriesDb.Countries.Any(
                         c => c.ISO2 == fieldValue && c.Id != countryId);
                 case "iso3":
-                    return _context.Countries.Any(
+                    return _countriesDb.Countries.Any(
                         c => c.ISO3 == fieldValue && c.Id != countryId);
                 default:
                     return false;

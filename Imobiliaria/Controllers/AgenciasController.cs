@@ -15,25 +15,25 @@ namespace Imobiliaria.Controllers
     [ApiController]
     public class AgenciasController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _imobiliariaDb;
 
-        public AgenciasController(ApplicationDbContext context)
+        public AgenciasController(ApplicationDbContext imobiliariaDb)
         {
-            _context = context;
+            _imobiliariaDb = imobiliariaDb;
         }
 
         // GET: api/Agencias
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Agencia>>> GetAgencias()
         {
-            return await _context.Agencias.ToListAsync();
+            return await _imobiliariaDb.Agencias.ToListAsync();
         }
 
         // GET: api/Agencias/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Agencia>> GetAgencia(int id)
         {
-            var agencia = await _context.Agencias.FindAsync(id);
+            var agencia = await _imobiliariaDb.Agencias.FindAsync(id);
 
             if (agencia == null)
             {
@@ -53,11 +53,11 @@ namespace Imobiliaria.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(agencia).State = EntityState.Modified;
+            _imobiliariaDb.Entry(agencia).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _imobiliariaDb.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +79,8 @@ namespace Imobiliaria.Controllers
         [HttpPost]
         public async Task<ActionResult<Agencia>> PostAgencia(Agencia agencia)
         {
-            _context.Agencias.Add(agencia);
-            await _context.SaveChangesAsync();
+            _imobiliariaDb.Agencias.Add(agencia);
+            await _imobiliariaDb.SaveChangesAsync();
 
             return CreatedAtAction("GetAgencia", new { id = agencia.Id }, agencia);
         }
@@ -89,21 +89,21 @@ namespace Imobiliaria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAgencia(int id)
         {
-            var agencia = await _context.Agencias.FindAsync(id);
+            var agencia = await _imobiliariaDb.Agencias.FindAsync(id);
             if (agencia == null)
             {
                 return NotFound();
             }
 
-            _context.Agencias.Remove(agencia);
-            await _context.SaveChangesAsync();
+            _imobiliariaDb.Agencias.Remove(agencia);
+            await _imobiliariaDb.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool AgenciaExists(int id)
         {
-            return _context.Agencias.Any(e => e.Id == id);
+            return _imobiliariaDb.Agencias.Any(e => e.Id == id);
         }
     }
 }

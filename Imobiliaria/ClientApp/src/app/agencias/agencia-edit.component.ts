@@ -34,14 +34,7 @@ export class AgenciaEditComponent implements OnInit {
 
   ngOnInit() {
 
-    this.form = new FormGroup({
-      id: new FormControl(''),
-      nome: new FormControl(''),
-      cidade: new FormControl(''),
-      idCorretor: new FormControl(''),
-      idImovel: new FormControl('')
-
-    });
+    this.createForm();
 
     this.loadData();
 
@@ -76,31 +69,51 @@ export class AgenciaEditComponent implements OnInit {
     if (this.id) {
 
       //Modo edição
-
-      var url = this.baseUrl + "api/Agencias/" + this.agencia.id;
-      this.http.put<Agencia>(url, agencia)
-        .subscribe(result => {
-
-          console.log("Agência " + this.agencia.id + " foi atualizada.");
-
-          //Volta para lista de agências
-          this.router.navigate(['/agencias']);
-        }, error => console.error(error));
-
+      this.editMode(agencia);
+     
     } else {
 
       //Modo adição
-      var url = this.baseUrl + "api/Agencias";
-      this.http.post<Agencia>(url, agencia)
-        .subscribe(result => {
-
-          console.log("Agência " + result.id + " foi criada");
-
-          //Volta para lista de agências
-          this.router.navigate(['/agencias']);
-
-        }, error => console.error(error));
+      this.addMode(agencia);
     }
+  }
+
+  createForm() {
+    this.form = new FormGroup({
+      id: new FormControl(''),
+      nome: new FormControl(''),
+      cidade: new FormControl(''),
+      idCorretor: new FormControl(''),
+      idImovel: new FormControl('')
+
+    });
+
+  }
+
+  addMode(agencia) {
+
+    var url = this.baseUrl + "api/Agencias";
+    this.http.post<Agencia>(url, agencia)
+      .subscribe(result => {
+
+        console.log("Agência " + result.id + " foi criada");
+
+        //Volta para lista de agências
+        this.router.navigate(['/agencias']);
+
+      }, error => console.error(error));
+  }
+
+  editMode(agencia) {
+    var url = this.baseUrl + "api/Agencias/" + this.agencia.id;
+    this.http.put<Agencia>(url, agencia)
+      .subscribe(result => {
+
+        console.log("Agência " + this.agencia.id + " foi atualizada.");
+
+        //Volta para lista de agências
+        this.router.navigate(['/agencias']);
+      }, error => console.error(error));
   }
 
 }

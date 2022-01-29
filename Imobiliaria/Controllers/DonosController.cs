@@ -14,25 +14,25 @@ namespace Imobiliaria.Controllers
     [ApiController]
     public class DonosController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _imobiliariaDb;
 
-        public DonosController(ApplicationDbContext context)
+        public DonosController(ApplicationDbContext imobiliariaDb)
         {
-            _context = context;
+            _imobiliariaDb = imobiliariaDb;
         }
 
         // GET: api/Donos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Dono>>> GetDonos()
         {
-            return await _context.Donos.ToListAsync();
+            return await _imobiliariaDb.Donos.ToListAsync();
         }
 
         // GET: api/Donos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Dono>> GetDono(int id)
         {
-            var dono = await _context.Donos.FindAsync(id);
+            var dono = await _imobiliariaDb.Donos.FindAsync(id);
 
             if (dono == null)
             {
@@ -52,11 +52,11 @@ namespace Imobiliaria.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(dono).State = EntityState.Modified;
+            _imobiliariaDb.Entry(dono).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _imobiliariaDb.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,8 +78,8 @@ namespace Imobiliaria.Controllers
         [HttpPost]
         public async Task<ActionResult<Dono>> PostDono(Dono dono)
         {
-            _context.Donos.Add(dono);
-            await _context.SaveChangesAsync();
+            _imobiliariaDb.Donos.Add(dono);
+            await _imobiliariaDb.SaveChangesAsync();
 
             return CreatedAtAction("GetDono", new { id = dono.Id }, dono);
         }
@@ -88,21 +88,21 @@ namespace Imobiliaria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDono(int id)
         {
-            var dono = await _context.Donos.FindAsync(id);
+            var dono = await _imobiliariaDb.Donos.FindAsync(id);
             if (dono == null)
             {
                 return NotFound();
             }
 
-            _context.Donos.Remove(dono);
-            await _context.SaveChangesAsync();
+            _imobiliariaDb.Donos.Remove(dono);
+            await _imobiliariaDb.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool DonoExists(int id)
         {
-            return _context.Donos.Any(e => e.Id == id);
+            return _imobiliariaDb.Donos.Any(e => e.Id == id);
         }
     }
 }

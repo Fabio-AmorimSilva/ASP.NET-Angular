@@ -17,14 +17,14 @@ namespace WorldCities.Controllers
     [ApiController]
     public class SeedController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _rawDb;
         private readonly IWebHostEnvironment _env;
 
         public SeedController(
-            ApplicationDbContext context, 
+            ApplicationDbContext rawDb, 
             IWebHostEnvironment env)
         {
-            _context = context;
+            _rawDb = rawDb;
             _env = env;
         }
 
@@ -55,7 +55,7 @@ namespace WorldCities.Controllers
             // create a lookup dictionary
             // containing all the countries already existing 
             // into the Database (it will be empty on first run).
-            var countriesByName = _context.Countries
+            var countriesByName = _rawDb.Countries
                 .AsNoTracking()
                 .ToDictionary(x => x.Name, StringComparer.OrdinalIgnoreCase);
 
@@ -82,7 +82,7 @@ namespace WorldCities.Controllers
                 };
 
                 // add the new country to the DB context 
-                await _context.Countries.AddAsync(country);
+                await _rawDb.Countries.AddAsync(country);
 
                 // store the country in our lookup to retrieve its Id later on
                 countriesByName.Add(countryName, country);
@@ -92,12 +92,12 @@ namespace WorldCities.Controllers
             }
 
             // save all the countries into the Database 
-            if (numberOfCountriesAdded > 0) await _context.SaveChangesAsync();
+            if (numberOfCountriesAdded > 0) await _rawDb.SaveChangesAsync();
 
             // create a lookup dictionary 
             // containing all the cities already existing 
             // into the Database (it will be empty on first run). 
-            var cities = _context.Cities
+            var cities = _rawDb.Cities
                 .AsNoTracking()
                 .ToDictionary(x => (
                     Name: x.Name,
@@ -139,14 +139,14 @@ namespace WorldCities.Controllers
                 };
 
                 // add the new city to the DB context 
-                _context.Cities.Add(city);
+                _rawDb.Cities.Add(city);
 
                 // increment the counter 
                 numberOfCitiesAdded++;
             }
 
             // save all the cities into the Database 
-            if (numberOfCitiesAdded > 0) await _context.SaveChangesAsync();
+            if (numberOfCitiesAdded > 0) await _rawDb.SaveChangesAsync();
 
             return new JsonResult(new
             {

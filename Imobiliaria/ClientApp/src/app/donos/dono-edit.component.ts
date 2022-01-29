@@ -33,12 +33,8 @@ export class DonoEditComponent implements OnInit {
     @Inject('BASE_URL') private baseUrl: string) {}
 
   ngOnInit() {
-    this.form = new FormGroup({
-      nome: new FormControl(''),
-      idade: new FormControl(''),
-      imovel: new FormControl(''),
 
-    });
+    this.createForm();
 
     this.loadData();
 
@@ -63,7 +59,7 @@ export class DonoEditComponent implements OnInit {
 
   }
 
-    onSubmit() {
+  onSubmit() {
 
       var dono = (this.id) ? this.dono : <Dono>{};
 
@@ -73,32 +69,52 @@ export class DonoEditComponent implements OnInit {
 
       if (this.id) {
 
-        var url = this.baseUrl + 'api/Donos/' + this.dono.id;
-        this.http.put<Dono>(url, dono)
-          .subscribe(result => {
-
-            console.log("Dono " + this.dono.id + " foi editado com sucesso.");
-
-            //Volta para lista de donos
-            this.route.navigate(['/donos']);
-
-          }, error => console.error(error));
+        //Modo edição
+        this.editMode(dono);
 
       } else {
 
-        var url = this.baseUrl + "api/Donos";
-        this.http.post<Dono>(url, dono)
-          .subscribe(result => {
-
-            console.log("Dono " + result.id + " for criado.");
-
-            //Volta para lista de donos
-            this.route.navigate(['/donos']);
-
-          }, error => console.log(error));
+        //Modo adição
+        this.addMode(dono);
 
       }
 
+  }
+
+  createForm() {
+    this.form = new FormGroup({
+      nome: new FormControl(''),
+      idade: new FormControl(''),
+      imovel: new FormControl(''),
+
+    });
+  }
+
+  addMode(dono) {
+
+    var url = this.baseUrl + "api/Donos";
+    this.http.post<Dono>(url, dono)
+      .subscribe(result => {
+
+        console.log("Dono " + result.id + " for criado.");
+
+        //Volta para lista de donos
+        this.route.navigate(['/donos']);
+
+      }, error => console.log(error));
+  }
+
+  editMode(dono) {
+    var url = this.baseUrl + 'api/Donos/' + this.dono.id;
+    this.http.put<Dono>(url, dono)
+      .subscribe(result => {
+
+        console.log("Dono " + this.dono.id + " foi editado com sucesso.");
+
+        //Volta para lista de donos
+        this.route.navigate(['/donos']);
+
+      }, error => console.error(error));
   }
 
 

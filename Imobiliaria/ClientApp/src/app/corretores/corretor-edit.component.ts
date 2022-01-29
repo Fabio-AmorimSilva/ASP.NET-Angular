@@ -36,14 +36,8 @@ export class CorretorEditComponent implements OnInit {
 
   ngOnInit() {
 
-    this.form = new FormGroup({
-      id: new FormControl(''),
-      idAgencia: new FormControl(''),
-      nome: new FormControl(''),
-      idade: new FormControl(''),
-      vendas: new FormControl(''),
-    });
-
+    this.createForm();
+    
     this.loadData();
 
   }
@@ -68,6 +62,7 @@ export class CorretorEditComponent implements OnInit {
   }
 
   onSubmit() {
+
     var corretor = (this.id) ? this.corretor : <Corretor>{};
 
     corretor.idAgencia = this.form.get("idAgencia").value;
@@ -77,34 +72,58 @@ export class CorretorEditComponent implements OnInit {
 
     if (this.id) {
 
-      var url = this.baseUrl + "api/Corretores/" + this.corretor.id;
-      this.http.put<Corretor>(url, corretor)
-        .subscribe(result => {
-
-          console.log("Corretor " + this.corretor.id + " foi atualizado");
-
-          //Volta para lista de corretores
-          this.router.navigate(['/corretores']);
-
-
-        }, error => console.error(error));
+      //Modo Edição
+      this.editMode(corretor);
 
     } else {
 
-      var url = this.baseUrl + "api/Corretores";
-      this.http.post<Corretor>(url, corretor)
-        .subscribe(result => {
-
-          console.log("Corretor " + result.id + " foi criado.");
-
-          //Volta para lista de corretores
-          this.router.navigate(['/corretores']);
-
-        }, error => console.error(error));
+      //Modo adição
+      this.addMode(corretor);
 
     }
 
   }
 
+  createForm() {
+
+    this.form = new FormGroup({
+      id: new FormControl(''),
+      idAgencia: new FormControl(''),
+      nome: new FormControl(''),
+      idade: new FormControl(''),
+      vendas: new FormControl(''),
+    });
+
+  }
+
+  addMode(corretor) {
+
+    var url = this.baseUrl + "api/Corretores";
+    this.http.post<Corretor>(url, corretor)
+      .subscribe(result => {
+
+        console.log("Corretor " + result.id + " foi criado.");
+
+        //Volta para lista de corretores
+        this.router.navigate(['/corretores']);
+
+      }, error => console.error(error));
+
+  }
+
+  editMode(corretor) {
+    var url = this.baseUrl + "api/Corretores/" + this.corretor.id;
+    this.http.put<Corretor>(url, corretor)
+      .subscribe(result => {
+
+        console.log("Corretor " + this.corretor.id + " foi atualizado");
+
+        //Volta para lista de corretores
+        this.router.navigate(['/corretores']);
+
+
+      }, error => console.error(error));
+
+  }
 
 }

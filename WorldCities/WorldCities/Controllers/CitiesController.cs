@@ -14,11 +14,11 @@ namespace WorldCities.Controllers
     [ApiController]
     public class CitiesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _citiesDb;
 
-        public CitiesController(ApplicationDbContext context)
+        public CitiesController(ApplicationDbContext citiesDb)
         {
-            _context = context;
+            _citiesDb = citiesDb;
         }
 
         // GET: api/Cities
@@ -35,7 +35,7 @@ namespace WorldCities.Controllers
                 string filterQuery = null)
         {
             return await ApiResult<City>.CreateAsync(
-                    _context.Cities,
+                    _citiesDb.Cities,
                     pageIndex,
                     pageSize,
                     sortColumn,
@@ -48,7 +48,7 @@ namespace WorldCities.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<City>> GetCity(int id)
         {
-            var city = await _context.Cities.FindAsync(id);
+            var city = await _citiesDb.Cities.FindAsync(id);
 
             if (city == null)
             {
@@ -68,11 +68,11 @@ namespace WorldCities.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(city).State = EntityState.Modified;
+            _citiesDb.Entry(city).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _citiesDb.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -94,8 +94,8 @@ namespace WorldCities.Controllers
         [HttpPost]
         public async Task<ActionResult<City>> PostCity(City city)
         {
-            _context.Cities.Add(city);
-            await _context.SaveChangesAsync();
+            _citiesDb.Cities.Add(city);
+            await _citiesDb.SaveChangesAsync();
 
             return CreatedAtAction("GetCity", new { id = city.Id }, city);
         }
@@ -104,28 +104,28 @@ namespace WorldCities.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<City>> DeleteCity(int id)
         {
-            var city = await _context.Cities.FindAsync(id);
+            var city = await _citiesDb.Cities.FindAsync(id);
             if (city == null)
             {
                 return NotFound();
             }
 
-            _context.Cities.Remove(city);
-            await _context.SaveChangesAsync();
+            _citiesDb.Cities.Remove(city);
+            await _citiesDb.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool CityExists(int id)
         {
-            return _context.Cities.Any(e => e.Id == id);
+            return _citiesDb.Cities.Any(e => e.Id == id);
         }
 
         [HttpPost]
         [Route("IsDupeCity")]
         public bool IsDupeCity(City city)
         {
-            return _context.Cities.Any(
+            return _citiesDb.Cities.Any(
                 e => e.Name == city.Name &&
                      e.Lat  == city.Lat  &&
                      e.Lon  == city.Lon  &&
